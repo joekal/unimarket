@@ -176,10 +176,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# ============================================
+# CONFIGURATION DES FICHIERS STATIQUES
+# ============================================
 
-# Activer la compression et la mise en cache (optionnel mais recommandé)
+# 1. URL d'accès aux fichiers
+STATIC_URL = '/static/'
+
+# 2. Dossier absolu où Render va rassembler les fichiers (Obligatoire pour collectstatic)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# 3. Supprimer ou vider STATICFILES_DIRS car vos fichiers sont déjà dans l'application
+STATICFILES_DIRS = []
+
+# 4. Configuration de WhiteNoise pour Django 4.2
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -190,10 +200,11 @@ STORAGES = {
 }
 
 # ============================================
-# MEDIDAS DE SEGURIDAD - ARCHIVOS MEDIA
+# CONFIGURATION DES MÉDIAS (FICHIERS UPLOADÉS)
 # ============================================
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Validación de extensiones permitidas
 ALLOWED_FILE_EXTENSIONS = ['pdf', 'docx', 'xlsx', 'pptx', 'jpg', 'jpeg', 'png', 'gif', 'zip', 'txt']
 MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB
