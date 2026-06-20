@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import environ 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,22 +82,8 @@ WSGI_APPLICATION = 'unimarket.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # ============================================
-        # MESURES DE SÉCURITÉ - ISOLATION DE BD
-        # ============================================
-        # Pour SQLite, nous utilisons atomic transactions
-        'ATOMIC_REQUESTS': True,
-        # Timeout de connexion (en secondes)
-        'CONN_MAX_AGE': 600,
-        # Options de WAL mode pour plus de concurrence sécurisée
-        'OPTIONS': {
-            'isolation_level': None,  # Mode autocommit pour plus de contrôle
-        }
+    'default': dj_database_url.parse(environ('DATABASE_URL'))
     }
-}
 
 # ============================================
 # CACHING - OPTIMISATION PERFORMANCES
@@ -116,7 +104,7 @@ CACHES = {
 # MESURES DE SÉCURITÉ - PARAMÈTRES DE SESSION
 # ============================================
 # Sécuriser les cookies de session
-SESSION_COOKIE_SECURE = False  # True en production avec HTTPS
+SESSION_COOKIE_SECURE = True  # True en production avec HTTPS
 SESSION_COOKIE_HTTPONLY = True  # Empêcher l'accès JS aux cookies
 SESSION_COOKIE_SAMESITE = 'Strict'  # Protection CSRF
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'  # ✅ Stocker en cache (PLUS RAPIDE)
@@ -128,7 +116,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Fermer la session à la fermeture du n
 # ============================================
 # MESURES DE SÉCURITÉ - CSRF
 # ============================================
-CSRF_COOKIE_SECURE = False  # True en production avec HTTPS
+CSRF_COOKIE_SECURE = True  # True en production avec HTTPS
 CSRF_COOKIE_HTTPONLY = True  # Empêcher l'accès JS au token CSRF
 CSRF_COOKIE_SAMESITE = 'Strict'  # Protection contre les attaques inter-sites
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://127.0.0.1:8000']
