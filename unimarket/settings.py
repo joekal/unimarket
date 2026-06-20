@@ -13,7 +13,6 @@ import os
 import environ 
 from pathlib import Path
 import dj_database_url
-from gunicorn.config import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,7 +82,7 @@ WSGI_APPLICATION = 'unimarket.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(Env('DATABASE_URL'))
+    'default': dj_database_url.parse(env('DATABASE_URL'))
     }
 
 # ============================================
