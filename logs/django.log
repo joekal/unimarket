@@ -1,0 +1,1431 @@
+ERROR 2026-06-08 21:55:25,149 log 48668 140619158648512 Internal Server Error: /posts/
+Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/nox/Documents/bureau/projet-unimarket/app/views.py", line 68, in posts
+    return render(request, 'app/posts.html', context)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 894, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 556, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 554, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 676, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 771, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 682, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Template: /home/nox/Documents/bureau/projet-unimarket/app/templates/app/posts.html, Invalid filter: 'mul'
+ERROR 2026-06-08 21:58:02,497 log 49380 140525405468352 Internal Server Error: /posts/
+Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/nox/Documents/bureau/projet-unimarket/app/views.py", line 68, in posts
+    return render(request, 'app/posts.html', context)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 894, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 556, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 554, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 676, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 771, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 682, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Template: /home/nox/Documents/bureau/projet-unimarket/app/templates/app/posts.html, Invalid filter: 'mul'
+ERROR 2026-06-08 21:58:07,168 log 49380 140525405468352 Internal Server Error: /posts/
+Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/nox/Documents/bureau/projet-unimarket/app/views.py", line 68, in posts
+    return render(request, 'app/posts.html', context)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 894, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 556, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 554, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 676, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 771, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 682, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Template: /home/nox/Documents/bureau/projet-unimarket/app/templates/app/posts.html, Invalid filter: 'mul'
+ERROR 2026-06-08 21:58:27,210 log 52241 139981382219456 Internal Server Error: /posts/
+Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/nox/Documents/bureau/projet-unimarket/app/views.py", line 68, in posts
+    return render(request, 'app/posts.html', context)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 894, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 556, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 554, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 676, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 771, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 682, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Template: /home/nox/Documents/bureau/projet-unimarket/app/templates/app/posts.html, Invalid filter: 'mul'
+ERROR 2026-06-08 22:00:37,272 log 54554 139875802146496 Internal Server Error: /posts/
+Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/nox/Documents/bureau/projet-unimarket/app/views.py", line 68, in posts
+    return render(request, 'app/posts.html', context)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 894, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 556, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 554, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 676, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 771, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 682, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Template: /home/nox/Documents/bureau/projet-unimarket/app/templates/app/posts.html, Invalid filter: 'mul'
+WARNING 2026-06-08 22:00:37,485 log 54554 139875802146496 Not Found: /favicon.ico
+WARNING 2026-06-10 22:48:47,737 log 205515 139893919446720 Not Found: /media/profiles/02.jpg
+WARNING 2026-06-10 22:48:47,890 log 205515 139893877483200 Not Found: /media/profiles/02.jpg
+ERROR 2026-06-10 23:31:22,636 log 243149 139864629573312 Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/nox/Documents/bureau/projet-unimarket/app/views.py", line 62, in index
+    return render(request, 'app/index.html', context)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 235, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 585, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 894, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 556, in parse
+    raise self.error(token, e)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 554, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 676, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 771, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/base.py", line 682, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Template: /home/nox/Documents/bureau/projet-unimarket/app/templates/app/index.html, Invalid filter: 'mul'
+WARNING 2026-06-10 23:36:19,616 log 245295 140440087013056 Not Found: /media/profiles/02.jpg
+ERROR 2026-06-10 23:36:38,590 log 245295 140440087013056 Internal Server Error: /profile/
+Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.13/contextlib.py", line 85, in inner
+    return func(*args, **kwds)
+  File "/home/nox/Documents/bureau/projet-unimarket/app/views.py", line 221, in profile
+    return render(request, 'app/profile.html', context)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: app/profile.html
+WARNING 2026-06-11 08:05:35,186 log 8365 139677992482496 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-06-11 08:06:01,328 log 8365 139677763888832 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-06-11 08:08:34,196 log 8365 139677984089792 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2026-06-11 09:04:55,907 log 41162 140123106703040 Forbidden (CSRF token from POST incorrect.): /newsletter/subscribe/
+WARNING 2026-06-11 09:04:56,306 log 41162 140123106703040 Not Found: /favicon.ico
+ERROR 2026-06-12 23:08:25,919 views 104467 139788722108096 Erreur lors de l'upload: User has no profile.
+ERROR 2026-06-13 07:11:22,352 log 180835 140651953447424 Internal Server Error: /login
+Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 311, in __call__
+    response = self.process_response(request, response)
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/middleware/common.py", line 109, in process_response
+    self.get_full_path_with_slash(request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/nox/Documents/bureau/projet-unimarket/.venv/lib/python3.13/site-packages/django/middleware/common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+    ...<9 lines>...
+    )
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to testserver/login/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+WARNING 2026-06-13 07:30:25,944 log 183689 140078672242368 Forbidden: /upload/
+WARNING 2026-06-13 07:31:56,512 log 183689 140078672242368 Forbidden: /upload/
+WARNING 2026-06-13 11:59:12,321 notifications 212980 139810265063936 ⚠️ plyer not installed. Desktop notifications disabled.
+WARNING 2026-06-13 11:59:20,092 notifications 213125 140571557048832 ⚠️ plyer not installed. Desktop notifications disabled.
+WARNING 2026-06-13 12:06:15,814 views 217830 139809095935680 [SECURITY] LOGIN_UNKNOWN_EMAIL | User: ANONYMOUS | IP: 127.0.0.1 | Email: john.doe@upc.edu.dz
+ERROR 2026-06-13 12:09:28,132 notifications 220980 140513040647872 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-13 12:14:32,821 views 220980 140513032255168 [SECURITY] LOGIN_INVALID_PASSWORD | User: ANONYMOUS | IP: 10.95.20.64 | User: kalalajonathan297@gmail.com
+ERROR 2026-06-13 12:14:32,822 notifications 220980 140513032255168 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-13 12:15:12,178 views 220980 140512564586176 [SECURITY] LOGIN_UNKNOWN_EMAIL | User: ANONYMOUS | IP: 10.95.20.29 | Email: k67453425@gmail.com
+WARNING 2026-06-13 12:18:09,424 views 228344 140141679072960 [SECURITY] LOGIN_UNKNOWN_EMAIL | User: ANONYMOUS | IP: 127.0.0.1 | Email: john.doe@upc.edu.dz
+WARNING 2026-06-13 12:18:49,461 views 228344 140141679072960 [SECURITY] LOGIN_INVALID_PASSWORD | User: ANONYMOUS | IP: 127.0.0.1 | User: sophie@example.com
+ERROR 2026-06-13 12:18:49,463 notifications 228344 140141679072960 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-13 12:19:17,162 notifications 228344 140141679072960 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-13 12:21:27,398 views 233586 140666783921856 [SECURITY] LOGIN_INVALID_PASSWORD | User: ANONYMOUS | IP: 10.95.20.64 | User: kalalajonathan297@gmail.com
+ERROR 2026-06-13 12:21:27,400 notifications 233586 140666783921856 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-13 12:21:42,146 notifications 233586 140666783921856 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-13 13:19:06,006 notifications 287611 140091154491072 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-13 13:19:37,976 views 287611 140091154491072 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-13 13:19:37,980 log 287611 140091154491072 Internal Server Error: /posts/
+ERROR 2026-06-13 13:19:51,355 views 287611 140091154491072 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-13 13:19:51,364 log 287611 140091154491072 Internal Server Error: /posts/
+ERROR 2026-06-13 21:11:30,398 views 292772 140097940879040 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-13 21:11:30,408 log 292772 140097940879040 Internal Server Error: /posts/
+ERROR 2026-06-13 21:11:49,182 views 292772 140097940879040 Erreur dans posts: Reverse for 'post_detail' with arguments '('anciens-examens-mathématiques-2023-2024',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-13 21:11:49,191 log 292772 140097940879040 Internal Server Error: /posts/
+ERROR 2026-06-13 21:20:05,241 views 300919 139942970783424 Erreur dans posts: Reverse for 'post_detail' with arguments '('anciens-examens-mathématiques-2023-2024',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-13 21:20:05,249 log 300919 139942970783424 Internal Server Error: /posts/
+ERROR 2026-06-13 21:20:28,065 notifications 300919 139942970783424 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-13 21:20:32,796 views 300919 139942970783424 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-13 21:20:32,800 log 300919 139942970783424 Internal Server Error: /posts/
+ERROR 2026-06-15 21:45:48,768 views 66120 140408612955840 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-15 21:45:48,773 log 66120 140408612955840 Internal Server Error: /posts/
+ERROR 2026-06-15 21:45:57,960 views 66120 140408612955840 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-15 21:45:57,968 log 66120 140408612955840 Internal Server Error: /posts/
+ERROR 2026-06-15 21:46:31,677 notifications 66120 140408612955840 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-15 21:46:52,091 views 66120 140408612955840 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-15 21:46:52,096 log 66120 140408612955840 Internal Server Error: /posts/
+ERROR 2026-06-15 22:22:47,276 views 92771 140015212402368 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-15 22:22:47,279 log 92771 140015212402368 Internal Server Error: /posts/
+ERROR 2026-06-15 22:23:14,121 notifications 92771 140014709102272 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-15 22:24:29,679 views 92771 140015212402368 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-15 22:24:29,682 log 92771 140015212402368 Internal Server Error: /posts/
+WARNING 2026-06-15 22:34:31,059 views 92771 140014692316864 [SECURITY] LOGIN_UNKNOWN_EMAIL | User: ANONYMOUS | IP: 127.0.0.1 | Email: k67453425@gmail.com
+ERROR 2026-06-15 22:39:04,464 views 92771 140014717494976 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-15 22:39:04,468 log 92771 140014717494976 Internal Server Error: /posts/
+ERROR 2026-06-15 22:39:13,615 views 92771 140014717494976 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-15 22:39:13,625 log 92771 140014717494976 Internal Server Error: /posts/
+ERROR 2026-06-15 23:09:01,463 views 127428 139777706796736 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-15 23:09:01,467 log 127428 139777706796736 Internal Server Error: /posts/
+ERROR 2026-06-16 22:09:56,805 views 162555 139835679438528 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-16 22:09:56,808 log 162555 139835679438528 Internal Server Error: /posts/
+ERROR 2026-06-16 22:35:41,848 views 162555 139835679438528 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-16 22:35:41,854 log 162555 139835679438528 Internal Server Error: /posts/
+ERROR 2026-06-16 22:51:23,991 views 202245 140519978038976 Erreur dans index: Invalid field name(s) given in select_related: 'profile'. Choices are: user
+ERROR 2026-06-16 22:51:23,999 log 202245 140519978038976 Internal Server Error: /
+ERROR 2026-06-16 22:51:42,390 views 202245 140519518762688 Erreur dans index: Invalid field name(s) given in select_related: 'profile'. Choices are: user
+ERROR 2026-06-16 22:51:42,394 log 202245 140519518762688 Internal Server Error: /
+ERROR 2026-06-16 22:52:21,547 views 202245 140519476799168 Erreur dans index: Invalid field name(s) given in select_related: 'profile'. Choices are: user
+ERROR 2026-06-16 22:52:21,553 log 202245 140519476799168 Internal Server Error: /
+ERROR 2026-06-16 22:52:45,505 views 202245 140519485191872 Erreur dans index: Invalid field name(s) given in select_related: 'profile'. Choices are: user
+ERROR 2026-06-16 22:52:45,512 log 202245 140519485191872 Internal Server Error: /
+ERROR 2026-06-16 22:57:02,682 views 207809 140257153513152 Erreur dans index: The 'file' attribute has no file associated with it.
+ERROR 2026-06-16 22:57:02,687 log 207809 140257153513152 Internal Server Error: /
+ERROR 2026-06-16 23:04:09,575 views 213393 140278947116736 Erreur dans index: The 'file' attribute has no file associated with it.
+ERROR 2026-06-16 23:04:09,580 log 213393 140278947116736 Internal Server Error: /
+ERROR 2026-06-17 05:17:54,450 notifications 250716 139982936209088 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-17 05:26:04,563 notifications 259547 139929817446080 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-17 05:32:15,064 notifications 265066 140593934100160 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-17 05:34:46,724 log 265066 140594167932608 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-17 05:35:25,402 log 265066 140594167932608 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-17 05:35:45,913 log 265066 140594167932608 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-17 05:47:08,557 log 265066 140593942492864 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-17 05:47:17,414 log 265066 140593925707456 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-17 06:04:40,442 log 265066 140594176325312 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-17 06:06:31,167 log 265066 140594176325312 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+ERROR 2026-06-17 06:14:49,694 notifications 292635 140061847844544 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-17 06:15:54,160 log 292635 140061847844544 Not Found: /profil/
+WARNING 2026-06-17 06:15:54,228 log 292635 140061847844544 Not Found: /favicon.ico
+ERROR 2026-06-17 06:18:22,971 views 292635 140061847844544 Profil introuvable pour startupme6@gmail.com
+ERROR 2026-06-17 06:18:22,974 log 292635 140061847844544 Internal Server Error: /signup/
+WARNING 2026-06-17 06:28:58,951 views 304905 140658357192384 [SECURITY] SIGNUP_DUPLICATE_EMAIL | User: ANONYMOUS | IP: 10.121.93.29 | Email: startupme6@gmail.com
+WARNING 2026-06-17 06:29:24,668 views 304905 140658357192384 [SECURITY] LOGIN_INVALID_PASSWORD | User: ANONYMOUS | IP: 10.121.93.29 | User: startupme6@gmail.com
+ERROR 2026-06-17 06:29:24,669 notifications 304905 140658357192384 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-17 06:29:40,281 views 304905 140658357192384 [SECURITY] LOGIN_INVALID_PASSWORD | User: ANONYMOUS | IP: 10.121.93.29 | User: startupme6@gmail.com
+ERROR 2026-06-17 06:29:40,281 notifications 304905 140658357192384 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-17 06:29:56,744 views 304905 140658357192384 [SECURITY] LOGIN_INVALID_PASSWORD | User: ANONYMOUS | IP: 10.121.93.29 | User: startupme6@gmail.com
+ERROR 2026-06-17 06:29:56,744 notifications 304905 140658357192384 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-17 06:30:30,613 views 304905 140658357192384 [SECURITY] LOGIN_UNKNOWN_EMAIL | User: ANONYMOUS | IP: 10.121.93.29 | Email: kalaalajonathan297@gmail.com
+WARNING 2026-06-17 06:39:06,209 views 312823 139975668528832 [SECURITY] LOGIN_INVALID_PASSWORD | User: ANONYMOUS | IP: 10.121.93.29 | User: startupme6@gmail.com
+ERROR 2026-06-17 06:39:06,211 notifications 312823 139975668528832 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-17 22:38:21,619 notifications 89176 140311368074944 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-17 22:38:21,713 log 89176 140311368074944 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-17 22:38:47,958 log 89176 140311368074944 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-17 22:38:52,917 log 89176 140311368074944 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-17 22:39:29,973 log 89176 140311368074944 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-17 22:39:37,102 log 89176 140311368074944 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+ERROR 2026-06-17 22:53:09,278 notifications 100886 140326020544192 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-17 22:53:09,378 log 100886 140326020544192 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+ERROR 2026-06-18 02:41:10,643 notifications 100886 140326012151488 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-18 02:41:10,788 log 100886 140326012151488 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 02:42:33,688 log 100886 140326012151488 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+ERROR 2026-06-18 02:54:55,616 notifications 115587 140281797822144 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-18 02:54:55,799 log 115587 140281797822144 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 02:54:55,804 log 115587 140281786455744 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 02:55:21,359 log 115587 140281786455744 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:55:54,234 log 115587 140281797822144 Not Found: /profile/+
+WARNING 2026-06-18 02:55:54,277 log 115587 140281797822144 Not Found: /favicon.ico
+ERROR 2026-06-18 02:56:11,581 notifications 115587 140281777014464 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-18 02:56:11,658 log 115587 140281777014464 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 02:56:11,663 log 115587 140281542338240 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 02:56:46,208 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:56:47,093 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:56:51,952 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:56:54,899 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:56:55,513 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:56:55,957 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:56:56,153 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:56:56,371 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:56:56,561 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:56:56,806 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:57:04,107 log 115587 140281777014464 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-18 02:57:07,137 log 115587 140281777014464 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 02:57:07,142 log 115587 140281542338240 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 02:57:18,922 log 115587 140281777014464 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 02:58:19,123 log 115587 140281777014464 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 02:58:25,855 log 115587 140281777014464 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 02:58:25,859 log 115587 140281542338240 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 02:58:59,571 log 115587 140281542338240 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 02:58:59,578 log 115587 140281777014464 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 02:59:06,763 log 115587 140281777014464 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 02:59:06,768 log 115587 140281542338240 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+ERROR 2026-06-18 02:59:57,694 views 115587 140281542338240 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 02:59:57,697 log 115587 140281542338240 Internal Server Error: /posts/
+WARNING 2026-06-18 02:59:57,716 log 115587 140281542338240 Not Found: /media/profiles/avatar_nox_.jpg
+ERROR 2026-06-18 03:00:03,215 views 115587 140281542338240 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 03:00:03,220 log 115587 140281542338240 Internal Server Error: /posts/
+WARNING 2026-06-18 03:00:03,243 log 115587 140281542338240 Not Found: /media/profiles/avatar_nox_.jpg
+ERROR 2026-06-18 03:27:47,985 views 125898 140644283692736 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 03:27:47,989 log 125898 140644283692736 Internal Server Error: /posts/
+ERROR 2026-06-18 03:35:26,281 notifications 131855 140139011503808 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-18 03:35:26,366 log 131855 140139011503808 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:35:26,372 log 131855 140138994718400 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 03:35:35,861 log 131855 140139011503808 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:35:40,323 log 131855 140139011503808 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:37:04,593 log 131855 140139011503808 Not Found: /media/profiles/avatar_nox_.jpg
+ERROR 2026-06-18 03:37:12,948 views 131855 140139011503808 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 03:37:12,953 log 131855 140139011503808 Internal Server Error: /posts/
+WARNING 2026-06-18 03:37:12,979 log 131855 140139011503808 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:37:30,921 log 131855 140139011503808 Not Found: /media/profiles/avatar_nox_.jpg
+ERROR 2026-06-18 03:43:34,842 notifications 139256 139808499300032 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-18 03:43:34,940 log 139256 139808499300032 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:43:34,945 log 139256 139808489858752 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+ERROR 2026-06-18 03:43:41,009 views 139256 139808499300032 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 03:43:41,012 log 139256 139808499300032 Internal Server Error: /posts/
+WARNING 2026-06-18 03:43:41,028 log 139256 139808499300032 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:43:51,359 log 139256 139808499300032 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:44:01,439 log 139256 139808499300032 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:44:11,620 log 139256 139808499300032 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:45:13,111 log 139256 139808499300032 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 03:45:18,089 log 139256 139808499300032 Not Found: /media/profiles/avatar_nox_.jpg
+ERROR 2026-06-18 03:45:19,926 views 139256 139808499300032 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 03:45:19,930 log 139256 139808499300032 Internal Server Error: /posts/
+WARNING 2026-06-18 03:45:19,947 log 139256 139808499300032 Not Found: /media/profiles/avatar_nox_.jpg
+ERROR 2026-06-18 04:00:59,094 views 152289 140367535900352 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 04:00:59,098 log 152289 140367535900352 Internal Server Error: /posts/
+ERROR 2026-06-18 04:01:16,452 notifications 152289 140367535900352 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-18 04:01:16,538 log 152289 140367535900352 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 04:01:16,543 log 152289 140367450076864 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 04:01:23,724 log 152289 140367535900352 Not Found: /media/profiles/avatar_nox_.jpg
+ERROR 2026-06-18 04:01:43,123 views 152289 140367535900352 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 04:01:43,128 log 152289 140367535900352 Internal Server Error: /posts/
+WARNING 2026-06-18 04:01:43,154 log 152289 140367535900352 Not Found: /media/profiles/avatar_nox_.jpg
+ERROR 2026-06-18 04:09:03,836 views 159108 140133619762880 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 04:09:03,840 log 159108 140133619762880 Internal Server Error: /posts/
+ERROR 2026-06-18 04:09:11,312 views 159108 140133619762880 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 04:09:11,316 log 159108 140133619762880 Internal Server Error: /posts/
+ERROR 2026-06-18 04:09:13,901 views 159108 140133619762880 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 04:09:13,910 log 159108 140133619762880 Internal Server Error: /posts/
+ERROR 2026-06-18 04:09:35,196 views 159108 140133619762880 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 04:09:35,205 log 159108 140133619762880 Internal Server Error: /posts/
+ERROR 2026-06-18 05:53:32,569 views 8613 140579797239488 Erreur dans posts: Reverse for 'post_detail' with arguments '('correction-de-mémoires-et-rapports',)' not found. 1 pattern(s) tried: ['posts/(?P<slug>[-a-zA-Z0-9_]+)/\\Z']
+ERROR 2026-06-18 05:53:32,584 log 8613 140579797239488 Internal Server Error: /posts/
+WARNING 2026-06-18 05:55:50,864 log 13311 139623693059776 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 05:55:50,945 log 13311 139623693059776 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 05:55:50,955 log 13311 139623607035584 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 05:55:50,969 log 13311 139623581857472 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 05:55:50,971 log 13311 139623615428288 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 05:55:50,978 log 13311 139623598642880 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 05:55:50,985 log 13311 139623590250176 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 05:55:51,008 log 13311 139623598642880 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 05:55:51,015 log 13311 139623615428288 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 05:55:51,016 log 13311 139623590250176 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 05:55:51,023 log 13311 139623607035584 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 05:55:53,204 log 13311 139623607035584 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 05:55:53,220 log 13311 139623615428288 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 05:56:03,051 log 13311 139623615428288 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 05:56:14,385 log 13311 139623615428288 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 05:56:14,476 log 13311 139623615428288 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 05:56:14,489 log 13311 139623607035584 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 05:56:14,490 log 13311 139623598642880 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 05:56:14,495 log 13311 139623590250176 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 05:56:14,500 log 13311 139623581857472 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 05:56:14,508 log 13311 139623693059776 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 05:56:14,515 log 13311 139623607035584 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 05:56:14,522 log 13311 139623598642880 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 05:56:14,535 log 13311 139623590250176 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 05:56:14,541 log 13311 139623693059776 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:02:45,157 log 13311 139623598642880 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:02:45,168 log 13311 139623693059776 Not Found: /media/listings/test_listing.jpg
+ERROR 2026-06-18 06:03:05,212 views 13311 139623693059776 Erreur dans posts: The 'image' attribute has no file associated with it.
+ERROR 2026-06-18 06:03:05,227 log 13311 139623693059776 Internal Server Error: /posts/
+ERROR 2026-06-18 06:03:11,594 views 13311 139623693059776 Erreur dans posts: The 'image' attribute has no file associated with it.
+ERROR 2026-06-18 06:03:11,608 log 13311 139623693059776 Internal Server Error: /posts/
+WARNING 2026-06-18 06:03:16,524 log 13311 139623693059776 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:03:16,660 log 13311 139623693059776 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:03:16,701 log 13311 139623598642880 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:03:16,723 log 13311 139623607035584 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:03:16,737 log 13311 139623590250176 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:03:16,739 log 13311 139623581857472 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:03:16,784 log 13311 139623615428288 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:03:16,812 log 13311 139623590250176 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:03:16,834 log 13311 139623598642880 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:03:16,860 log 13311 139623693059776 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:03:16,866 log 13311 139623607035584 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:03:21,907 log 13311 139623693059776 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:03:21,912 log 13311 139623607035584 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:03:39,499 log 13311 139623607035584 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:03:39,573 log 13311 139623590250176 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:03:39,589 log 13311 139623615428288 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:03:39,590 log 13311 139623693059776 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:03:39,594 log 13311 139623607035584 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:03:39,595 log 13311 139623581857472 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:03:39,601 log 13311 139623598642880 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:03:39,608 log 13311 139623693059776 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:03:39,615 log 13311 139623590250176 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:03:39,622 log 13311 139623615428288 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:03:39,635 log 13311 139623581857472 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:03:41,058 log 13311 139623581857472 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:03:41,065 log 13311 139623590250176 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:03:47,610 log 13311 139623590250176 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:03:47,697 log 13311 139623590250176 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:04:31,412 log 13311 139623590250176 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:04:31,417 log 13311 139623581857472 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:05:09,173 log 13311 139623590250176 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:05:09,382 log 13311 139623590250176 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:05:09,391 log 13311 139623693059776 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:05:09,405 log 13311 139623615428288 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:05:09,413 log 13311 139623581857472 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:05:09,433 log 13311 139623607035584 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:05:09,438 log 13311 139623598642880 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:05:09,451 log 13311 139623590250176 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:05:09,488 log 13311 139623607035584 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:05:09,499 log 13311 139623598642880 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:05:09,510 log 13311 139623581857472 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:05:10,477 log 13311 139623581857472 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:05:10,485 log 13311 139623598642880 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:05:13,115 log 13311 139623598642880 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:05:28,259 log 13311 139623598642880 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:05:28,374 log 13311 139623598642880 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:05:28,391 log 13311 139623607035584 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:05:28,396 log 13311 139623615428288 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:05:28,397 log 13311 139623693059776 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:05:28,401 log 13311 139623581857472 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:05:28,413 log 13311 139623590250176 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:05:28,415 log 13311 139623598642880 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:05:28,430 log 13311 139623615428288 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:05:28,429 log 13311 139623607035584 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:05:28,437 log 13311 139623590250176 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:05:29,749 log 13311 139623607035584 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:05:29,758 log 13311 139623590250176 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:07:18,261 log 13311 139623590250176 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:15:09,779 log 13311 139623011448512 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:15:53,809 log 13311 139622994663104 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:15:53,954 log 13311 139623011448512 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:15:53,957 log 13311 139622994663104 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:15:53,966 log 13311 139623563146944 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:15:53,979 log 13311 139622986270400 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:15:53,982 log 13311 139623571539648 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:15:53,990 log 13311 139623003055808 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:15:54,004 log 13311 139622994663104 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:15:54,015 log 13311 139623011448512 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:15:54,024 log 13311 139623563146944 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:15:54,036 log 13311 139622986270400 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:16:01,632 log 13311 139623563146944 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:16:01,727 log 13311 139623563146944 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:16:15,752 log 13311 139623563146944 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:16:15,869 log 13311 139623563146944 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:16:15,871 log 13311 139623571539648 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:16:15,882 log 13311 139623003055808 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:16:15,887 log 13311 139622986270400 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:16:15,888 log 13311 139622994663104 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:16:15,893 log 13311 139623011448512 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:16:15,915 log 13311 139623563146944 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:16:15,917 log 13311 139623571539648 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:16:15,918 log 13311 139623003055808 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:16:15,929 log 13311 139622994663104 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:16:17,827 log 13311 139623003055808 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:16:17,828 log 13311 139622994663104 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:16:22,502 log 13311 139622994663104 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:16:22,512 log 13311 139623003055808 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:25:47,409 log 37789 140183699355328 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:25:47,411 log 37789 140183689914048 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:25:50,799 log 37789 140183689914048 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:25:50,900 log 37789 140183689914048 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:25:50,921 log 37789 140183699355328 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:25:50,932 log 37789 140183680472768 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:25:50,965 log 37789 140183689914048 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:25:50,973 log 37789 140183699355328 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:25:50,979 log 37789 140183672080064 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:25:50,984 log 37789 140183680472768 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:25:50,992 log 37789 140183655294656 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:25:50,996 log 37789 140183663687360 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:25:51,008 log 37789 140183672080064 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:25:53,265 log 37789 140183672080064 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:25:53,281 log 37789 140183680472768 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:26:05,250 log 37789 140183699355328 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:26:05,460 log 37789 140183663687360 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:26:05,479 log 37789 140183672080064 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:26:05,493 log 37789 140183655294656 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:26:05,615 log 37789 140183655294656 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:26:05,617 log 37789 140183672080064 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:26:05,629 log 37789 140183680472768 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:26:05,636 log 37789 140183663687360 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:26:05,643 log 37789 140183689914048 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:26:05,650 log 37789 140183655294656 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:26:05,660 log 37789 140183672080064 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:26:08,214 log 37789 140183672080064 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:26:08,218 log 37789 140183699355328 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:26:46,565 log 38535 140269634741952 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 06:26:46,756 log 38535 140269617956544 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:26:46,766 log 38535 140269269808832 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:26:46,780 log 38535 140269652575936 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:26:46,966 log 38535 140269652575936 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:26:46,967 log 38535 140269634741952 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:26:46,971 log 38535 140269269808832 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:26:46,973 log 38535 140269626349248 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:26:46,980 log 38535 140269644183232 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:26:46,986 log 38535 140269617956544 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:26:46,998 log 38535 140269652575936 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:26:49,344 log 38535 140269652575936 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:26:49,368 log 38535 140269644183232 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:31:15,068 log 42248 139785452058304 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:31:15,081 log 42248 139785425831616 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:31:15,087 log 42248 139785079355072 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:31:15,092 log 42248 139785443665600 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:31:15,093 log 42248 139785434224320 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:31:15,112 log 42248 139785443665600 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:31:15,117 log 42248 139785079355072 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:31:15,128 log 42248 139785434224320 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:31:15,133 log 42248 139785452058304 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:31:15,143 log 42248 139785070962368 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:31:15,144 log 42248 139785425831616 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:31:15,157 log 42248 139785070962368 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:31:43,597 log 42248 139785070962368 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:31:59,471 log 42248 139785037391552 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:31:59,481 log 42248 139785045784256 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:31:59,484 log 42248 139785028998848 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:31:59,502 log 42248 139785062569664 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:31:59,512 log 42248 139784542484160 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:31:59,533 log 42248 139785037391552 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:31:59,562 log 42248 139785045784256 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:31:59,566 log 42248 139785028998848 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:31:59,589 log 42248 139785062569664 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:31:59,631 log 42248 139784542484160 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:31:59,656 log 42248 139785037391552 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:31:59,684 log 42248 139785045784256 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:40:18,350 log 49030 140603909236416 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:40:18,353 log 49030 140603900843712 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:40:18,359 log 49030 140603917629120 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:40:18,366 log 49030 140603892451008 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:40:18,372 log 49030 140603884058304 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:40:18,398 log 49030 140603884058304 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:40:18,408 log 49030 140603917629120 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:40:18,409 log 49030 140603900843712 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:40:18,415 log 49030 140603892451008 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:40:18,420 log 49030 140603909236416 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:40:18,446 log 49030 140603927070400 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:40:18,457 log 49030 140603884058304 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:40:38,976 log 49030 140603909236416 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:40:38,982 log 49030 140603927070400 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:40:38,989 log 49030 140603917629120 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:40:38,989 log 49030 140603884058304 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:40:39,014 log 49030 140603927070400 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:40:39,017 log 49030 140603900843712 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:40:39,024 log 49030 140603909236416 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 06:40:39,024 log 49030 140603892451008 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:40:39,029 log 49030 140603884058304 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:40:39,038 log 49030 140603917629120 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:40:39,043 log 49030 140603900843712 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:40:39,049 log 49030 140603892451008 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:40:43,928 log 49030 140603892451008 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:40:43,929 log 49030 140603884058304 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:40:43,948 log 49030 140603900843712 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:41:02,532 log 49030 140603900843712 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:41:02,539 log 49030 140603884058304 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:41:02,552 log 49030 140603909236416 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:41:02,553 log 49030 140603892451008 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:41:02,558 log 49030 140603927070400 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 06:41:02,569 log 49030 140603900843712 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 06:41:02,577 log 49030 140603884058304 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:41:32,162 log 49030 140603927070400 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:41:32,174 log 49030 140603892451008 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:41:32,178 log 49030 140603909236416 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:41:32,180 log 49030 140603884058304 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:41:32,181 log 49030 140603900843712 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:41:32,185 log 49030 140603917629120 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:41:32,209 log 49030 140603917629120 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 06:41:32,213 log 49030 140603900843712 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:41:32,220 log 49030 140603909236416 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:45:08,777 log 49030 140603900843712 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 06:45:08,789 log 49030 140603909236416 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 06:45:08,797 log 49030 140603884058304 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 06:45:08,801 log 49030 140603917629120 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 06:45:08,815 log 49030 140603927070400 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 06:45:08,820 log 49030 140603892451008 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 06:45:08,846 log 49030 140603892451008 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 06:45:08,848 log 49030 140603917629120 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 06:45:08,856 log 49030 140603927070400 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 07:42:57,727 log 96037 140237795751616 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 07:42:57,738 log 96037 140238160279232 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 07:42:57,752 log 96037 140238151886528 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 07:42:57,754 log 96037 140238169720512 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 07:42:57,760 log 96037 140238143493824 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 07:42:57,793 log 96037 140238151886528 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 07:42:57,803 log 96037 140238169720512 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 07:42:57,808 log 96037 140237795751616 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 07:42:57,813 log 96037 140237787358912 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 07:42:57,818 log 96037 140238160279232 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 07:42:57,833 log 96037 140238143493824 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 07:42:57,836 log 96037 140237795751616 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 07:43:37,657 log 96037 140238160279232 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 07:43:37,659 log 96037 140238143493824 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 07:43:37,660 log 96037 140237795751616 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 07:43:50,435 log 96037 140237795751616 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 07:43:50,447 log 96037 140238151886528 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 07:43:50,487 log 96037 140238169720512 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 07:43:50,503 log 96037 140237787358912 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 07:43:50,515 log 96037 140238143493824 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 07:43:50,524 log 96037 140238160279232 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 07:43:50,549 log 96037 140237787358912 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 07:43:50,573 log 96037 140237795751616 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 07:43:50,603 log 96037 140238151886528 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 07:43:50,625 log 96037 140238169720512 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 07:43:50,632 log 96037 140238160279232 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 07:43:50,642 log 96037 140238143493824 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 07:45:56,149 log 96037 140238160279232 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 07:45:56,179 log 96037 140237787358912 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 07:45:56,183 log 96037 140238151886528 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 07:45:56,223 log 96037 140237795751616 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 07:45:56,232 log 96037 140238169720512 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 07:45:56,245 log 96037 140238160279232 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 07:45:56,296 log 96037 140237795751616 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 07:45:56,343 log 96037 140237787358912 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 07:45:56,346 log 96037 140238160279232 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 07:45:56,363 log 96037 140238169720512 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 07:45:56,395 log 96037 140237795751616 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 07:45:56,397 log 96037 140238151886528 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 07:46:14,255 log 96037 140238143493824 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 07:46:14,272 log 96037 140238151886528 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 07:46:25,091 log 96037 140238143493824 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 07:46:25,119 log 96037 140238151886528 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 07:46:25,128 log 96037 140237795751616 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 07:48:29,617 log 96037 140237258880704 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 07:48:29,634 log 96037 140237762180800 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 07:48:29,653 log 96037 140237753788096 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 07:48:29,693 log 96037 140237258880704 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 07:48:29,698 log 96037 140237770573504 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 07:48:29,701 log 96037 140237778966208 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 07:48:29,714 log 96037 140237753788096 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 07:48:29,730 log 96037 140237762180800 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 07:48:29,748 log 96037 140237258880704 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 07:48:29,768 log 96037 140237770573504 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 07:48:29,783 log 96037 140237753788096 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 07:48:29,797 log 96037 140237778966208 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 07:49:21,514 log 96037 140237745395392 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 07:49:21,519 log 96037 140237778966208 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 07:49:37,682 log 96037 140237778966208 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 07:49:37,695 log 96037 140237745395392 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 09:49:24,391 log 13445 140498475923136 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 09:49:24,455 log 13445 140498484315840 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 09:49:24,456 log 13445 140498467530432 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 09:49:24,461 log 13445 140498111035072 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 09:49:24,467 log 13445 140498459137728 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 09:49:24,508 log 13445 140498484315840 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 09:49:24,510 log 13445 140498475923136 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 09:49:24,533 log 13445 140498111035072 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 09:49:24,552 log 13445 140498459137728 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 09:49:24,557 log 13445 140498467530432 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 09:49:24,582 log 13445 140498484315840 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 09:49:24,598 log 13445 140498475923136 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 09:49:49,001 log 13445 140498484315840 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 09:49:49,015 log 13445 140498467530432 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 09:49:49,018 log 13445 140498459137728 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 09:50:38,042 log 13445 140498459137728 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 09:50:38,053 log 13445 140498475923136 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 09:50:38,055 log 13445 140498467530432 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 09:54:31,208 log 13445 140498467530432 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 09:54:31,223 log 13445 140498475923136 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 09:54:31,228 log 13445 140498459137728 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 09:54:38,130 log 13445 140498475923136 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 09:54:38,139 log 13445 140498467530432 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 09:54:38,155 log 13445 140498459137728 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 09:54:38,168 log 13445 140498111035072 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 09:54:38,175 log 13445 140498484315840 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 09:54:38,183 log 13445 140498102642368 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 09:54:38,191 log 13445 140498475923136 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 09:54:38,208 log 13445 140498459137728 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 09:54:38,222 log 13445 140498111035072 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 09:54:38,223 log 13445 140498484315840 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 09:54:38,229 log 13445 140498467530432 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 09:54:38,234 log 13445 140498102642368 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 09:54:47,293 log 13445 140498102642368 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 09:54:47,297 log 13445 140498467530432 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 09:54:47,304 log 13445 140498484315840 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 09:55:15,242 log 13445 140498484315840 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 09:55:15,283 log 13445 140498102642368 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 09:55:15,300 log 13445 140498467530432 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 11:44:55,834 log 32535 140300049069760 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 11:44:55,867 log 32535 140300015498944 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 11:44:55,897 log 32535 140300040677056 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 11:44:55,917 log 32535 140299535906496 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 11:44:55,924 log 32535 140300032284352 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 11:44:55,937 log 32535 140300023891648 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 11:44:55,942 log 32535 140300049069760 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 11:44:56,009 log 32535 140300040677056 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 11:44:56,038 log 32535 140299535906496 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 11:44:56,049 log 32535 140300032284352 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 11:44:56,060 log 32535 140300015498944 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 11:44:56,064 log 32535 140300023891648 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 11:45:04,112 log 32535 140300023891648 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 11:50:45,689 log 32535 140300032284352 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 11:50:45,701 log 32535 140300023891648 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 11:50:45,718 log 32535 140300049069760 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 11:50:45,720 log 32535 140300057462464 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 11:50:45,731 log 32535 140300040677056 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 11:50:45,733 log 32535 140300032284352 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 11:50:45,746 log 32535 140300049069760 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 11:50:45,746 log 32535 140300023891648 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 11:50:45,761 log 32535 140300015498944 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 11:50:45,768 log 32535 140300057462464 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 11:50:45,773 log 32535 140300040677056 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 11:50:45,782 log 32535 140300015498944 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 11:50:51,558 log 32535 140300040677056 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 11:50:51,572 log 32535 140300015498944 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 11:50:51,578 log 32535 140300057462464 Not Found: /media/listings/test_listing_YCx532h.jpg
+ERROR 2026-06-18 11:50:58,414 views 32535 140300015498944 Erreur post_detail: The 'image' attribute has no file associated with it.
+WARNING 2026-06-18 11:50:58,436 log 32535 140300015498944 Not Found: /posts/chaise-de-bureau-ergonomique/
+ERROR 2026-06-18 11:51:07,016 views 32535 140300015498944 Erreur post_detail: The 'image' attribute has no file associated with it.
+WARNING 2026-06-18 11:51:07,035 log 32535 140300015498944 Not Found: /posts/chaise-de-bureau-ergonomique/
+ERROR 2026-06-18 11:51:28,240 views 32535 140300015498944 Erreur post_detail: The 'image' attribute has no file associated with it.
+WARNING 2026-06-18 11:51:28,261 log 32535 140300015498944 Not Found: /posts/laptop-hp-i5---16gb-ram---256gb-ssd/
+ERROR 2026-06-18 11:51:49,061 views 32535 140300015498944 Erreur post_detail: The 'image' attribute has no file associated with it.
+WARNING 2026-06-18 11:51:49,086 log 32535 140300015498944 Not Found: /posts/laptop-hp-i5---16gb-ram---256gb-ssd/
+WARNING 2026-06-18 11:51:55,619 log 32535 140300040677056 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 11:51:55,636 log 32535 140300032284352 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 11:51:55,645 log 32535 140300049069760 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 11:51:55,648 log 32535 140300023891648 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 11:51:55,654 log 32535 140300015498944 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 11:51:55,655 log 32535 140300057462464 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 11:51:55,681 log 32535 140300057462464 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 11:51:55,686 log 32535 140300023891648 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 11:51:55,692 log 32535 140300032284352 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 11:51:55,697 log 32535 140300049069760 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 11:51:55,697 log 32535 140300015498944 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 11:51:55,703 log 32535 140300040677056 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 11:52:00,203 log 32535 140300049069760 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 11:52:00,206 log 32535 140300032284352 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 12:00:25,647 log 32535 140300023891648 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 12:00:32,765 log 32535 140300023891648 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 12:03:38,574 log 32535 140300032284352 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 12:03:38,594 log 32535 140299535906496 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 12:03:38,621 log 32535 140300057462464 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 12:03:38,627 log 32535 140300040677056 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 12:03:38,635 log 32535 140300015498944 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 12:03:38,671 log 32535 140300032284352 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 12:03:38,696 log 32535 140299535906496 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 12:03:38,698 log 32535 140300057462464 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 12:03:38,718 log 32535 140300040677056 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 12:03:38,721 log 32535 140300015498944 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 12:03:38,773 log 32535 140300032284352 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 12:03:38,794 log 32535 140299535906496 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 12:04:00,880 log 32535 140300040677056 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 12:04:00,889 log 32535 140299525588672 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 12:04:00,896 log 32535 140300032284352 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 12:04:08,355 log 32535 140300032284352 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 12:04:08,378 log 32535 140300040677056 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 12:04:08,392 log 32535 140300015498944 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 12:04:08,400 log 32535 140299535906496 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 12:04:08,408 log 32535 140300057462464 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 12:04:08,415 log 32535 140299525588672 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 12:04:08,418 log 32535 140300032284352 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 12:04:08,428 log 32535 140300015498944 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 12:04:08,429 log 32535 140300040677056 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 12:04:08,442 log 32535 140300057462464 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 12:04:08,449 log 32535 140299535906496 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 12:04:08,451 log 32535 140299525588672 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 12:12:17,020 log 54848 140437479261888 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 12:12:17,026 log 54848 140437470869184 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 12:12:17,048 log 54848 140437479261888 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 12:12:17,055 log 54848 140437461427904 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 12:12:17,060 log 54848 140437453035200 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 12:12:17,061 log 54848 140437109077696 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 12:12:17,069 log 54848 140437100684992 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 12:12:17,077 log 54848 140437470869184 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 12:12:17,092 log 54848 140437461427904 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 12:12:17,093 log 54848 140437453035200 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 12:12:17,099 log 54848 140437109077696 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 12:12:17,109 log 54848 140437100684992 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 12:12:24,656 log 54848 140437453035200 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 12:12:24,668 log 54848 140437461427904 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 12:12:24,669 log 54848 140437100684992 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+ERROR 2026-06-18 12:13:13,159 notifications 54848 140437453035200 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-18 12:13:13,264 log 54848 140437453035200 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 12:13:13,283 log 54848 140437109077696 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 12:13:19,743 log 54848 140437453035200 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 12:14:55,499 log 54848 140437453035200 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 12:14:55,568 log 54848 140437453035200 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:14:23,021 log 54848 140437470869184 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:14:23,027 log 54848 140437479261888 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 13:14:23,034 log 54848 140437100684992 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:14:23,043 log 54848 140437453035200 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:14:23,052 log 54848 140437109077696 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 13:14:23,068 log 54848 140437100684992 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 13:14:23,073 log 54848 140437470869184 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 13:14:23,082 log 54848 140437090367168 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 13:14:23,084 log 54848 140437479261888 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 13:14:23,096 log 54848 140437109077696 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 13:14:23,101 log 54848 140437453035200 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 13:14:23,111 log 54848 140437090367168 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 13:21:26,906 log 54848 140437073581760 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 13:21:26,917 log 54848 140437100684992 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:21:26,927 log 54848 140437453035200 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:21:26,927 log 54848 140437090367168 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 13:21:26,934 log 54848 140437081974464 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 13:21:26,940 log 54848 140437470869184 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:21:26,953 log 54848 140437090367168 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 13:21:26,959 log 54848 140437073581760 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 13:21:26,964 log 54848 140437470869184 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 13:21:26,969 log 54848 140437100684992 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 13:21:26,974 log 54848 140437453035200 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 13:21:26,979 log 54848 140437081974464 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 13:21:33,832 log 54848 140437081974464 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 13:22:42,475 log 54848 140437073581760 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:22:42,483 log 54848 140437090367168 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:22:42,494 log 54848 140437470869184 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:22:48,534 log 54848 140437470869184 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:22:48,542 log 54848 140437090367168 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 13:23:15,043 log 54848 140437090367168 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:23:15,045 log 54848 140437470869184 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 13:25:58,513 log 54848 140437470869184 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:25:58,518 log 54848 140437073581760 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 13:25:58,524 log 54848 140437090367168 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 13:25:58,540 log 54848 140437479261888 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:25:58,540 log 54848 140437100684992 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:27:20,319 log 54848 140437073581760 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:27:20,321 log 54848 140437090367168 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:27:20,326 log 54848 140437100684992 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 13:27:20,334 log 54848 140437479261888 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 13:27:20,343 log 54848 140437109077696 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 13:27:20,354 log 54848 140437073581760 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 13:27:20,382 log 54848 140437479261888 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 13:27:20,388 log 54848 140437090367168 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 13:27:20,390 log 54848 140437100684992 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 13:27:20,396 log 54848 140437109077696 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 13:27:20,398 log 54848 140437470869184 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:27:20,408 log 54848 140437470869184 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 13:27:48,172 log 54848 140437470869184 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 13:28:29,522 log 54848 140437470869184 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 13:30:01,320 log 54848 140437470869184 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 13:30:01,335 log 54848 140437090367168 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:30:01,336 log 54848 140437100684992 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:30:01,341 log 54848 140437109077696 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:30:12,573 log 54848 140437109077696 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:30:12,592 log 54848 140437100684992 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 13:30:12,589 log 54848 140437470869184 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:30:12,603 log 54848 140437090367168 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 13:30:12,605 log 54848 140437479261888 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:30:19,234 log 54848 140437109077696 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 13:30:19,247 log 54848 140437470869184 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:30:19,253 log 54848 140437090367168 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:30:19,265 log 54848 140437479261888 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 13:30:19,266 log 54848 140437100684992 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:30:25,623 log 54848 140437100684992 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 13:30:25,630 log 54848 140437470869184 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:30:25,637 log 54848 140437479261888 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:30:25,643 log 54848 140437090367168 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:30:45,133 log 54848 140437470869184 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 13:30:45,138 log 54848 140437100684992 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:30:45,151 log 54848 140437090367168 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:30:45,143 log 54848 140437109077696 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 13:30:45,174 log 54848 140437100684992 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 13:30:45,179 log 54848 140437470869184 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 13:30:45,180 log 54848 140437073581760 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 13:30:45,189 log 54848 140437090367168 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 13:30:45,196 log 54848 140437109077696 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 13:30:45,205 log 54848 140437073581760 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 13:30:45,209 log 54848 140437479261888 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:30:45,222 log 54848 140437479261888 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 13:30:51,438 log 54848 140437109077696 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:30:51,446 log 54848 140437073581760 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:30:51,455 log 54848 140437479261888 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:30:56,077 log 54848 140437479261888 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:30:56,086 log 54848 140437470869184 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 13:30:56,099 log 54848 140437090367168 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 13:30:56,107 log 54848 140437073581760 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:30:56,107 log 54848 140437100684992 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 13:30:56,125 log 54848 140437479261888 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 13:30:56,132 log 54848 140437109077696 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:30:56,139 log 54848 140437073581760 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 13:30:56,146 log 54848 140437090367168 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 13:30:56,147 log 54848 140437470869184 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 13:30:56,155 log 54848 140437109077696 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 13:30:56,165 log 54848 140437100684992 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 13:32:30,946 log 54848 140437100684992 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 13:59:28,830 log 54848 140437073581760 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 13:59:28,821 log 54848 140437479261888 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 13:59:28,837 log 54848 140437090367168 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 13:59:28,837 log 54848 140437460379328 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 13:59:28,846 log 54848 140437109077696 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 13:59:28,865 log 54848 140437460379328 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 13:59:28,871 log 54848 140437109077696 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 13:59:28,878 log 54848 140437479261888 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 13:59:28,883 log 54848 140437090367168 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 13:59:28,890 log 54848 140437073581760 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 13:59:28,926 log 54848 140437109077696 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 13:59:28,931 log 54848 140437460379328 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 13:59:50,799 log 54848 140437460379328 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 13:59:50,800 log 54848 140437470869184 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:00:12,113 log 54848 140437073581760 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 14:00:12,118 log 54848 140437109077696 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 14:00:12,136 log 54848 140437460379328 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:00:12,143 log 54848 140437090367168 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 14:00:12,146 log 54848 140437479261888 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 14:00:12,147 log 54848 140437470869184 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:00:12,162 log 54848 140437479261888 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 14:00:12,170 log 54848 140437073581760 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 14:00:12,175 log 54848 140437470869184 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 14:00:12,186 log 54848 140437109077696 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 14:00:12,186 log 54848 140437090367168 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 14:00:12,192 log 54848 140437460379328 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 14:00:22,922 log 54848 140437470869184 Not Found: /media/listings/test_listing.jpg
+WARNING 2026-06-18 14:00:22,936 log 54848 140437460379328 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:00:22,943 log 54848 140437090367168 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:00:22,949 log 54848 140437109077696 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 14:00:41,136 log 54848 140437109077696 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:00:41,149 log 54848 140437460379328 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 14:00:41,151 log 54848 140437090367168 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+ERROR 2026-06-18 14:01:14,247 notifications 54848 140437090367168 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-18 14:01:14,357 log 54848 140437090367168 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:01:14,360 log 54848 140437460379328 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:01:14,373 log 54848 140437109077696 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:03:41,332 log 54848 140437090367168 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:03:41,338 log 54848 140437460379328 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:03:41,344 log 54848 140437109077696 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 14:03:41,356 log 54848 140437073581760 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 14:03:41,380 log 54848 140437479261888 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 14:03:41,391 log 54848 140437109077696 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 14:03:41,392 log 54848 140437090367168 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 14:03:41,392 log 54848 140437460379328 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 14:03:41,399 log 54848 140437470869184 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 14:03:41,408 log 54848 140437073581760 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 14:03:41,417 log 54848 140437470869184 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 14:03:41,423 log 54848 140437479261888 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 14:08:31,622 log 54848 140437460379328 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 14:08:31,813 log 54848 140437460379328 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:08:31,953 log 54848 140437460379328 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:08:32,143 log 54848 140437460379328 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 14:08:47,097 log 54848 140437460379328 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:08:47,239 log 54848 140437470869184 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:08:47,631 log 54848 140437073581760 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 14:08:47,650 log 54848 140437460379328 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 14:08:47,656 log 54848 140437470869184 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 14:08:47,687 log 54848 140437073581760 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 14:08:47,701 log 54848 140437460379328 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 14:08:47,761 log 54848 140437470869184 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 14:08:47,775 log 54848 140437073581760 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 14:08:47,790 log 54848 140437460379328 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 14:08:47,803 log 54848 140437479261888 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 14:08:47,809 log 54848 140437109077696 Not Found: /media/listings/test_listing_r1agvPd.jpg
+ERROR 2026-06-18 14:11:33,330 notifications 54848 140437109077696 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-18 14:11:33,420 log 54848 140437109077696 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:11:33,428 log 54848 140437470869184 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:11:33,436 log 54848 140437460379328 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:11:37,122 log 54848 140437109077696 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:11:50,337 log 54848 140437109077696 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:11:50,375 log 54848 140437460379328 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:11:50,386 log 54848 140437470869184 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:11:50,397 log 54848 140437100684992 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 14:11:50,415 log 54848 140437470869184 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 14:11:50,430 log 54848 140437460379328 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 14:11:50,431 log 54848 140437109077696 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 14:11:50,443 log 54848 140437100684992 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 14:11:50,448 log 54848 140437073581760 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 14:11:50,454 log 54848 140437479261888 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 14:11:50,471 log 54848 140437073581760 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 14:11:50,477 log 54848 140437470869184 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 14:11:50,483 log 54848 140437479261888 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-18 14:12:03,167 log 54848 140437479261888 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:12:23,947 log 54848 140437479261888 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:12:23,991 log 54848 140437470869184 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:12:23,994 log 54848 140437100684992 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 14:12:24,005 log 54848 140437460379328 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:12:24,017 log 54848 140437109077696 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 14:12:24,018 log 54848 140437073581760 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 14:12:29,448 log 54848 140437109077696 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:12:29,489 log 54848 140437073581760 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:13:06,600 log 54848 140437109077696 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:13:38,476 log 54848 140437073581760 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:14:39,615 log 54848 140437100684992 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:15:12,578 log 54848 140437100684992 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:15:26,578 log 54848 140437100684992 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:15:44,446 log 54848 140437109077696 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-18 14:15:44,483 log 54848 140437479261888 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-18 14:15:44,498 log 54848 140437100684992 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-18 14:15:44,518 log 54848 140437470869184 Not Found: /media/listings/default.jpg
+WARNING 2026-06-18 14:15:44,531 log 54848 140437073581760 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-18 14:15:44,533 log 54848 140437479261888 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-18 14:15:44,542 log 54848 140437100684992 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-18 14:15:44,549 log 54848 140437109077696 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-18 14:15:44,558 log 54848 140437460379328 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-18 14:15:44,566 log 54848 140437470869184 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-18 14:15:44,573 log 54848 140437073581760 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-18 14:15:44,578 log 54848 140437460379328 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-18 14:15:44,587 log 54848 140437479261888 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-19 06:55:23,624 log 54848 140437073581760 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-19 06:55:23,630 log 54848 140437470869184 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-19 06:55:23,639 log 54848 140437100684992 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 06:55:23,654 log 54848 140437090367168 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-19 06:55:23,655 log 54848 140437081974464 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-19 06:55:23,679 log 54848 140437081974464 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-19 06:55:23,706 log 54848 140437470869184 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-19 06:55:23,707 log 54848 140437100684992 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-19 06:55:23,710 log 54848 140437090367168 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-19 06:55:23,720 log 54848 140437073581760 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-19 06:55:23,741 log 54848 140437081974464 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-19 06:55:23,762 log 54848 140437470869184 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-19 07:04:31,151 log 142137 139664231384768 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-19 07:04:31,167 log 142137 139664149182144 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-19 07:04:31,181 log 142137 139664231384768 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-19 07:04:31,189 log 142137 139664132396736 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-19 07:04:31,191 log 142137 139664140789440 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 07:04:31,202 log 142137 139664124004032 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-19 07:04:31,210 log 142137 139664115611328 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-19 07:04:31,236 log 142137 139664124004032 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-19 07:04:31,251 log 142137 139664140789440 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-19 07:04:31,263 log 142137 139664149182144 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-19 07:04:31,271 log 142137 139664231384768 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-19 07:04:31,278 log 142137 139664132396736 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+ERROR 2026-06-19 07:06:00,404 notifications 142137 139664149182144 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-19 07:06:00,556 log 142137 139664149182144 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:06:33,729 log 142137 139664149182144 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:09:30,976 log 142137 139664149182144 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:10:00,851 log 142137 139664149182144 Not Found: /media/profiles/avatar_joek_kalala.jpg
+ERROR 2026-06-19 07:15:48,299 notifications 148457 140214565680832 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-19 07:15:48,392 log 148457 140214565680832 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:16:22,619 log 148457 140214565680832 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:16:26,999 log 148457 140214565680832 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:16:39,092 log 148457 140214565680832 Not Found: /media/profiles/avatar_joek_kalala.jpg
+ERROR 2026-06-19 07:17:13,078 notifications 148457 140214539454144 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-19 07:17:13,163 log 148457 140214539454144 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:17:18,176 log 148457 140214539454144 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:17:21,407 log 148457 140214539454144 Not Found: /media/profiles/avatar_joek_kalala.jpg
+ERROR 2026-06-19 07:18:42,179 notifications 152576 140211321288384 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-19 07:18:42,272 log 152576 140211321288384 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:18:46,137 log 152576 140211321288384 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:18:50,466 log 152576 140211321288384 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:20:27,271 log 152576 140211321288384 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:23:56,929 log 152576 140211321288384 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:24:59,105 log 152576 140211321288384 Not Found: /media/profiles/avatar_joek_kalala.jpg
+WARNING 2026-06-19 07:24:59,193 log 152576 140211321288384 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-19 07:24:59,215 log 152576 140211312895680 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 07:24:59,231 log 152576 140211338073792 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-19 07:24:59,236 log 152576 140211354859200 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-19 07:24:59,251 log 152576 140211346466496 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-19 07:24:59,257 log 152576 140211329681088 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-19 07:24:59,273 log 152576 140211321288384 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-19 07:24:59,281 log 152576 140211312895680 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-19 07:24:59,287 log 152576 140211338073792 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-19 07:24:59,295 log 152576 140211346466496 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-19 07:24:59,310 log 152576 140211329681088 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-19 07:24:59,314 log 152576 140211354859200 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-19 14:01:51,721 log 152576 140211346466496 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-19 14:01:51,722 log 152576 140211329681088 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 14:01:51,727 log 152576 140211354859200 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-19 14:01:51,742 log 152576 140211321288384 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-19 14:01:51,744 log 152576 140211338073792 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-19 14:01:51,751 log 152576 140211329681088 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-19 14:01:51,757 log 152576 140211354859200 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-19 14:01:51,764 log 152576 140211346466496 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-19 14:01:51,775 log 152576 140211321288384 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-19 14:01:51,781 log 152576 140211338073792 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-19 14:01:51,817 log 152576 140211329681088 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-19 14:01:51,823 log 152576 140211346466496 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-19 14:02:06,114 log 152576 140211312895680 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-19 14:02:06,121 log 152576 140211346466496 Not Found: /media/profiles/avatar_nox_.jpg
+WARNING 2026-06-19 14:31:33,436 log 181515 139660769064640 Not Found: /media/listings/concept-global-economic-depression.jpg
+WARNING 2026-06-19 14:31:33,442 log 181515 139660382693056 Not Found: /media/listings/test_listing_B6fhUaM.jpg
+WARNING 2026-06-19 14:31:33,442 log 181515 139660391085760 Not Found: /media/listings/test_listing_YCx532h.jpg
+WARNING 2026-06-19 14:31:33,448 log 181515 139660751230656 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 14:31:33,455 log 181515 139660742837952 Not Found: /media/listings/test_listing_5p5fEW0.jpg
+WARNING 2026-06-19 14:31:33,455 log 181515 139660760671936 Not Found: /media/listings/Screenshot_From_2026-06-03_23-45-10.png
+WARNING 2026-06-19 14:31:33,460 log 181515 139660769064640 Not Found: /media/listings/test_listing_ZDgPjFA.jpg
+WARNING 2026-06-19 14:31:33,484 log 181515 139660382693056 Not Found: /media/listings/test_listing_15LlUmf.jpg
+WARNING 2026-06-19 14:31:33,484 log 181515 139660760671936 Not Found: /media/listings/test_listing_sdfr4Un.jpg
+WARNING 2026-06-19 14:31:33,497 log 181515 139660751230656 Not Found: /media/listings/test_listing_FmHX3i7.jpg
+WARNING 2026-06-19 14:31:33,502 log 181515 139660742837952 Not Found: /media/listings/test_listing_r1agvPd.jpg
+WARNING 2026-06-19 14:31:33,505 log 181515 139660391085760 Not Found: /media/listings/test_listing_Bwuydr6.jpg
+WARNING 2026-06-19 14:41:14,261 log 193086 140704310388416 Not Found: /media/listings/default.jpg
+ERROR 2026-06-19 14:48:31,615 views 198608 140088659297984 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 14:48:31,650 log 198608 140088659297984 Internal Server Error: /
+ERROR 2026-06-19 14:49:08,700 views 198608 140088659297984 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 14:49:08,706 log 198608 140088659297984 Internal Server Error: /
+ERROR 2026-06-19 14:50:07,362 views 200257 140062004070080 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 14:50:07,403 log 200257 140062004070080 Internal Server Error: /
+ERROR 2026-06-19 14:50:58,904 views 200257 140061986236096 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 14:50:58,911 log 200257 140061986236096 Internal Server Error: /
+ERROR 2026-06-19 14:52:03,290 views 202157 139693558968832 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 14:53:30,587 views 205218 139842498613760 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 14:54:40,840 views 200257 140061986236096 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 14:54:40,846 log 200257 140061986236096 Internal Server Error: /
+ERROR 2026-06-19 14:57:42,655 views 215398 140478562914816 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 15:02:35,054 views 229412 140702510567936 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 15:02:35,095 log 229412 140702510567936 Internal Server Error: /
+ERROR 2026-06-19 15:03:46,730 views 230791 139928986649088 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 15:03:46,730 views 230791 139928986649088 Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/app/views.py", line 325, in index
+    +            'recent_listings': recent_listings,
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary +: 'str'
+
+ERROR 2026-06-19 15:03:46,771 log 230791 139928986649088 Internal Server Error: /
+ERROR 2026-06-19 15:04:09,611 views 230328 140693583267520 Erreur dans index: bad operand type for unary +: 'str'
+ERROR 2026-06-19 15:04:09,611 views 230328 140693583267520 Traceback (most recent call last):
+  File "/home/nox/Documents/bureau/projet-unimarket/app/views.py", line 325, in index
+    +            'recent_listings': recent_listings,
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: bad operand type for unary +: 'str'
+
+ERROR 2026-06-19 15:04:09,653 log 230328 140693583267520 Internal Server Error: /
+WARNING 2026-06-19 15:04:22,596 log 231335 140033201481408 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 15:05:05,708 log 231335 140033193088704 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 15:06:03,126 log 231335 140033193088704 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 15:07:48,777 log 231335 140033193088704 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 15:08:16,193 log 231335 140033211971264 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 15:15:20,764 log 231335 140033193088704 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 15:15:38,206 log 231335 140033193088704 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 22:24:21,908 log 320761 140321303320256 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 22:33:40,449 log 320761 140321311712960 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 22:42:49,475 log 320761 140321294927552 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 22:43:09,786 log 320761 140321294927552 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 22:49:34,238 log 320761 140320935241408 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 22:49:46,833 log 320761 140321303320256 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 22:51:19,341 log 320761 140321303320256 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 23:09:48,236 log 320761 140321303320256 Not Found: /media/listings/default.jpg
+WARNING 2026-06-19 23:45:51,083 log 320761 140321303320256 Not Found: /media/listings/default.jpg
+ERROR 2026-06-20 00:06:33,715 notifications 397140 140448032130752 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-20 00:06:55,995 log 397140 140448032130752 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-20 00:06:58,142 log 397140 140448032130752 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-20 00:06:59,260 log 397140 140448032130752 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+WARNING 2026-06-20 00:09:47,360 log 397140 140448032130752 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+ERROR 2026-06-20 00:27:33,035 notifications 397140 140448005904064 ❌ Erreur notification: No usable implementation found!
+WARNING 2026-06-20 00:28:30,999 log 397140 140447499585216 Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /profile/update/
+ERROR 2026-06-20 00:35:05,014 notifications 397140 140447491192512 ❌ Erreur notification: No usable implementation found!
+ERROR 2026-06-20 01:16:10,084 notifications 397140 140448005904064 ❌ Erreur notification: No usable implementation found!

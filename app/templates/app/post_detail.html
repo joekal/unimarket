@@ -1,0 +1,484 @@
+{% extends 'base.html' %}
+{% load static avatar_tags %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_description %}{{ post.description|truncatewords:30 }}{% endblock %}
+
+{% block content %}
+    <section class="ve-page-hero ve-page-hero-sm" style="background-image:url({% if post.image %}{{ post.image.url }}{% else %}{% static 'img/bg-img/22.jpg' %}{% endif %});">
+        <div class="ve-page-hero-overlay"></div>
+        <div class="container ve-page-hero-content">
+            <span class="ve-insight-cat" style="margin-bottom:16px;">{{ post.category.name }}</span>
+            <h1>{{ post.title }}</h1>
+            <div class="ve-post-meta-hero">
+                <span><i class="fa fa-user"></i> {{ seller.user.get_full_name }}</span>
+                <span><i class="fa fa-star"></i> {{ seller.rating }}/5 ({{ seller.total_reviews }} avis)</span>
+                <span><i class="fa fa-eye"></i> {{ post.views_count }} vues</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="ve-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <article class="ve-article">
+                        <div class="ve-article-featured bg-img" style="background-image:url({% if post.image %}{{ post.image.url }}{% else %}{% static 'img/bg-img/22.jpg' %}{% endif %});"></div>
+                        <div class="ve-article-body">
+                            <h3>Informations sur ce service</h3>
+                            <ul class="ve-article-info-list">
+                                <li><strong>Catégorie :</strong> {{ post.category.name }}</li>
+                                <li><strong>Localisation :</strong> {{ post.location }}</li>
+                                <li><strong>Type :</strong> {{ post.get_condition_display }}</li>
+                                <li><strong>Publié :</strong> {{ post.created_at|date:"d F Y" }}</li>
+                                <li><strong>Prix :</strong> {{ post.get_price_display }}</li>
+                                <li><strong>Intéressés :</strong> {{ contact_count }} personnes</li>
+                            </ul>
+
+                            <h3>Description</h3>
+                            <p>{{ post.description|linebreaks }}</p>
+
+                            <div class="ve-article-tags"><strong>Tags :</strong>
+                                <a href="#">{{ post.category.name }}</a>
+                                <a href="#">{{ post.get_condition_display }}</a>
+                                <a href="#">{{ post.location }}</a>
+                            </div>
+
+                            <div class="ve-article-share"><strong>Partager :</strong>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="https://wa.me/?text={{ post.title }} {{ request.build_absolute_uri }}" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ post.title }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="ve-comments-section" style="background: #f8f9fa; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
+                        <h4 style="margin-bottom: 20px;">Profil du vendeur</h4>
+                        <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                            {% if seller.profile_picture %}
+                            <div class="bg-img" style="background-image:url({{ seller.profile_picture.url }}); width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;"></div>
+                            {% else %}
+                            <div class="bg-img" style="background:#fec89a; width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0; display:flex; align-items:center; justify-content:center; font-size:32px; color:#fff;">
+                                {{ seller.user.get_full_name|default:seller.user.username|initial }}
+                            </div>
+                            {% endif %}
+                            <div style="flex: 1; min-width: 200px;">
+                                <h5 style="margin: 0 0 5px 0;">{{ seller.user.get_full_name }}</h5>
+                                <p style="margin: 0; color: #666;"><strong>{{ seller.university }} - {{ seller.promotion }}</strong></p>
+                                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">Spécialité : {{ seller.get_specialty_display }}</p>
+                                {% if seller.bio %}
+                                <p style="margin: 10px 0 0 0; font-size: 14px; color: #666;">"{{ seller.bio }}"</p>
+                                {% endif %}
+                                <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;">
+                                    {% if seller.phone %}
+                                    <a href="tel:{{ seller.phone }}" style="display: inline-block; padding: 8px 15px; background: #25d366; color: white; text-decoration: none; border-radius: 3px; font-size: 12px;">WhatsApp</a>
+                                    {% endif %}
+                                    <a href="mailto:{{ seller.user.email }}" style="display: inline-block; padding: 8px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 3px; font-size: 12px;">Envoyer un email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="ve-sidebar">
+                        <div class="ve-sidebar-widget">
+                            <h5 class="ve-sidebar-title">Détails du service</h5>
+                            <ul class="ve-cat-list">
+                                <li><strong>Catégorie :</strong> {{ post.category.name }}</li>
+                                <li><strong>Type :</strong> {{ post.get_condition_display }}</li>
+                                <li><strong>Localisation :</strong> {{ post.location }}</li>
+                                <li><strong>Prix :</strong> {{ post.get_price_display }}</li>
+                                <li><strong>Vues :</strong> {{ post.views_count }}</li>
+                                <li><strong>Intéressés :</strong> {{ contact_count }}</li>
+                            </ul>
+                        </div>
+                        <div class="ve-sidebar-widget">
+                            <h5 class="ve-sidebar-title">Actions rapides</h5>
+                            {% if whatsapp_url %}
+                            <a href="{{ whatsapp_url }}" target="_blank" class="ve-contact-btn ve-contact-whatsapp" style="margin-bottom:10px; display:block;">
+                                <i class="fa-brands fa-whatsapp"></i> Contacter via WhatsApp
+                            </a>
+                            {% endif %}
+                            <a href="mailto:{{ seller.user.email }}" class="ve-contact-btn ve-contact-email" style="margin-bottom:10px; display:block;">
+                                <i class="fa-solid fa-envelope"></i> Envoyer un email
+                            </a>
+                            {% if seller.phone %}
+                            <a href="tel:{{ seller.phone }}" class="ve-contact-btn ve-contact-phone" style="margin-bottom:10px; display:block;">
+                                <i class="fa-solid fa-phone"></i> Appeler
+                            </a>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                                {% if not user_has_contacted %}
+                                <button type="button" class="ve-contact-btn ve-contact-register" onclick="registerInterest()" style="width:100%;">
+                                    <i class="fa-solid fa-heart"></i> S'intéresser
+                                </button>
+                                {% else %}
+                                <button type="button" class="ve-contact-btn" disabled style="opacity:0.6; width:100%;">
+                                    ✓ Intérêt enregistré
+                                </button>
+                                {% endif %}
+                            {% else %}
+                            <a href="{% url 'login' %}?next={% url 'post_detail' post.slug %}" class="ve-contact-btn ve-contact-login" style="display:block;">
+                                <i class="fa-solid fa-sign-in-alt"></i> Se connecter
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ve-section" style="background: linear-gradient(135deg, #fec89a 0%, #f8edeb 100%);">
+        <div class="container">
+            <div style="text-align: center; padding: 40px 20px;">
+                <h2>Vous avez aussi un service à proposer ?</h2>
+                <p>Rejoignez la communauté UniMarket et gagnez de l'argent !</p>
+                <a href="{% url 'seller_listing_create' %}" class="ve-btn-primary ve-btn-lg">Publier un service</a>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --ve-dark: #3d3d3d;
+        --ve-gold: #fec89a;
+    }
+
+    .ve-page-hero-sm {
+        min-height: 420px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .ve-page-hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+    }
+
+    .ve-page-hero-content {
+        position: relative;
+        color: white;
+        z-index: 2;
+        padding: 80px 0;
+    }
+
+    .ve-insight-cat {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255,255,255,0.12);
+        padding: 10px 18px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .ve-page-hero-content h1 {
+        font-size: 42px;
+        font-weight: 900;
+        margin: 20px 0;
+        line-height: 1.05;
+    }
+
+    .ve-post-meta-hero {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        color: #f8f0e6;
+        font-size: 14px;
+    }
+
+    .ve-post-meta-hero i {
+        margin-right: 8px;
+        color: var(--ve-gold);
+    }
+
+    .ve-article {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+    }
+
+    .ve-article-featured {
+        min-height: 360px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .ve-article-body {
+        padding: 35px;
+    }
+
+    .ve-article-body h3 {
+        font-size: 26px;
+        margin-bottom: 22px;
+        color: var(--ve-dark);
+    }
+
+    .ve-article-info-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 30px 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+    }
+
+    .ve-article-info-list li {
+        background: #f8f8f8;
+        padding: 14px 18px;
+        border-radius: 12px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .ve-article-info-list strong {
+        color: var(--ve-dark);
+    }
+
+    .ve-article-body p {
+        font-size: 16px;
+        line-height: 1.9;
+        color: #444;
+        margin-bottom: 25px;
+        white-space: pre-wrap;
+    }
+
+    .ve-article-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 30px;
+        color: #777;
+    }
+
+    .ve-article-tags a {
+        color: var(--ve-dark);
+        background: #f6f2ea;
+        padding: 8px 14px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 13px;
+        transition: background .3s ease;
+    }
+
+    .ve-article-share {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-weight: 600;
+    }
+
+    .ve-article-share a {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background: #f3f0e7;
+        color: var(--ve-dark);
+        transition: transform .3s ease, background .3s ease;
+    }
+
+    .ve-article-share a:hover {
+        transform: translateY(-2px);
+        background: #fff2dc;
+    }
+
+    .ve-comments-section {
+        border-radius: 20px;
+    }
+
+    .ve-comments-section h4 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .ve-sidebar {
+        display: grid;
+        gap: 20px;
+    }
+
+    .ve-sidebar-widget {
+        background: white;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .ve-sidebar-title {
+        margin-bottom: 18px;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--ve-dark);
+    }
+
+    .ve-cat-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+    }
+
+    .ve-cat-list li {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        border-radius: 12px;
+        background: #f8f8f8;
+        padding: 14px 16px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .ve-contact-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 16px;
+        border: none;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all .25s ease;
+        cursor: pointer;
+    }
+
+    .ve-contact-whatsapp {
+        background: #25d366;
+        color: #fff;
+    }
+
+    .ve-contact-whatsapp:hover {
+        background: #20ba5f;
+    }
+
+    .ve-contact-email {
+        background: #ea4335;
+        color: #fff;
+    }
+
+    .ve-contact-email:hover {
+        background: #d33425;
+    }
+
+    .ve-contact-phone {
+        background: #4285f4;
+        color: #fff;
+    }
+
+    .ve-contact-phone:hover {
+        background: #3367d6;
+    }
+
+    .ve-contact-register {
+        background: var(--ve-gold);
+        color: var(--ve-dark);
+    }
+
+    .ve-contact-register:hover {
+        background: #f4b86d;
+    }
+
+    .ve-contact-login {
+        background: #3d3d3d;
+        color: #fff;
+    }
+
+    .ve-contact-login:hover {
+        background: #1a1a1a;
+    }
+
+    .ve-info-box {
+        background: #f8edeb;
+        padding: 22px;
+        border-radius: 16px;
+        border-left: 4px solid var(--ve-gold);
+    }
+
+    .ve-info-box h4 {
+        margin-bottom: 14px;
+        font-size: 16px;
+    }
+
+    .ve-info-box ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .ve-info-box li {
+        margin-bottom: 10px;
+        color: #555;
+        font-size: 14px;
+    }
+
+    @media (max-width: 991px) {
+        .ve-article-featured {
+            min-height: 260px;
+        }
+
+        .ve-page-hero-content h1 {
+            font-size: 32px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .ve-page-hero-content {
+            padding: 50px 0;
+        }
+
+        .ve-article-body {
+            padding: 24px;
+        }
+
+        .ve-article-info-list {
+            grid-template-columns: 1fr;
+        }
+
+        .ve-post-meta-hero {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+</style>
+
+<script>
+function registerInterest() {
+    fetch("{% url 'post_contact' post.slug %}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: 'message='
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('✓ Intérêt enregistré! Le vendeur sera notifié.');
+            location.reload();
+        } else {
+            alert('Erreur: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Erreur:', error));
+}
+</script>
+{% endblock %}

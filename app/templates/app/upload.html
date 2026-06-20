@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Partager un Service - UniMarket{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/upload.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="upload-hero">
+    <h1>Partagez Votre Service</h1>
+    <p>Contribuez à la communauté UniMarket en partageant vos ressources, documents ou services académiques</p>
+</section>
+
+<!-- UPLOAD FORM SECTION -->
+<section class="upload-container">
+    <div class="upload-form-wrapper">
+        <div class="upload-form-title">
+            <h2>Créer une <span class="highlight">Nouvelle Offre</span></h2>
+        </div>
+        <p class="upload-form-subtitle">Remplissez le formulaire ci-dessous pour partager votre service ou document avec la communauté UniMarket</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Service Basics -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="title">Titre du Service *</label>
+                    <input type="text" id="title" name="title" placeholder="ex: Résumé Mathématiques L2" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Catégorie *</label>
+                    <select id="category" name="category" required>
+                        <option value="">Sélectionner une catégorie</option>
+                        <option value="books">Livres &amp; Supports</option>
+                        <option value="documents">Documents Académiques</option>
+                        <option value="tutoring">Cours Particuliers</option>
+                        <option value="exams">Anciens Examens</option>
+                        <option value="study-groups">Groupes d'Étude</option>
+                        <option value="professional">Ressources Professionnelles</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Faculty & Level -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="faculty">Faculté/Département *</label>
+                    <select id="faculty" name="faculty" required>
+                        <option value="">Sélectionner une faculté</option>
+                        <option value="sciences">Faculté des Sciences</option>
+                        <option value="engineering">Faculté d'Ingénierie</option>
+                        <option value="medicine">Faculté de Médecine</option>
+                        <option value="business">Faculté de Commerce</option>
+                        <option value="humanities">Faculté des Sciences Humaines</option>
+                        <option value="law">Faculté de Droit</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="level">Niveau d'Études *</label>
+                    <select id="level" name="level" required>
+                        <option value="">Sélectionner un niveau</option>
+                        <option value="l1">Licence 1</option>
+                        <option value="l2">Licence 2</option>
+                        <option value="l3">Licence 3</option>
+                        <option value="m1">Master 1</option>
+                        <option value="m2">Master 2</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Subject & Year -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="subject">Matière/Sujet *</label>
+                    <input type="text" id="subject" name="subject" placeholder="ex: Algèbre Linéaire, Chimie Organique" required>
+                </div>
+                <div class="form-group">
+                    <label for="year">Année/Année Académique *</label>
+                    <input type="text" id="year" name="year" placeholder="ex: 2024, 2023-2024" required>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Description Détaillée *</label>
+                <textarea id="description" name="description" placeholder="Décrivez votre service : contenu, avantages, conditions d'utilisation..." required></textarea>
+            </div>
+
+            <!-- Tags -->
+            <div class="form-group">
+                <label for="tags">Tags (séparés par des virgules)</label>
+                <input type="text" id="tags" name="tags" placeholder="ex: mathématiques, L2, examen, 2024">
+            </div>
+
+            <!-- File Upload -->
+            <div class="form-group file-upload-section">
+                <label for="file">Fichier à Partager *</label>
+                <div class="file-upload-box" onclick="document.getElementById('file').click();">
+                    <div class="file-upload-icon"><i class="fa fa-cloud-upload"></i></div>
+                    <div class="file-upload-text">Cliquez ou déposez votre fichier</div>
+                    <div class="file-upload-help">PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT, ZIP (Max 50 MB)</div>
+                    <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip" required>
+                </div>
+                <div class="file-preview" id="file-preview" style="margin-top: 10px;"></div>
+            </div>
+
+            <!-- Pricing -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="price_type">Type de Partage *</label>
+                    <select id="price_type" name="price_type" required onchange="togglePriceField()">
+                        <option value="free">Gratuit</option>
+                        <option value="paid">Payant</option>
+                        <option value="donation">Donation (Libre)</option>
+                    </select>
+                </div>
+                <div class="form-group" id="price-group" style="display: none;">
+                    <label for="price">Prix ($)</label>
+                    <input type="number" id="price" name="price" placeholder="Entrez un prix" min="0" step="0.01">
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="contact_email">Email de Contact *</label>
+                    <input type="email" id="contact_email" name="contact_email" placeholder="votre.email@upc.edu.ma" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact_phone">Téléphone (WhatsApp)</label>
+                    <input type="tel" id="contact_phone" name="contact_phone" placeholder="+212 6XX XXX XXX">
+                </div>
+            </div>
+
+            <!-- Terms -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">
+                    J'accepte les conditions d'utilisation et j'affirme que le contenu partagé est original ou que j'ai les droits nécessaires
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">
+                <i class="fa fa-cloud-upload"></i> Publier Mon Service
+            </button>
+        </form>
+
+        {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                    <div class="message-alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- GUIDELINES SECTION -->
+<section class="upload-guidelines">
+    <div class="upload-guidelines-wrapper">
+        <h3><i class="fa fa-lightbulb-o"></i> Directives de Partage</h3>
+        
+        <div class="guidelines-grid">
+            <div class="guideline-card quality">
+                <h5><i class="fa fa-check-circle"></i> Qualité</h5>
+                <p>Assurez-vous que votre contenu est complet, bien organisé et utile pour d'autres étudiants.</p>
+            </div>
+
+            <div class="guideline-card authenticity">
+                <h5><i class="fa fa-check-circle"></i> Authenticité</h5>
+                <p>Respectez les droits d'auteur. Partagez uniquement du contenu dont vous êtes propriétaire.</p>
+            </div>
+
+            <div class="guideline-card responsibility">
+                <h5><i class="fa fa-shield"></i> Responsabilité</h5>
+                <p>Vous êtes responsable du contenu partagé. UniMarket se réserve le droit de supprimer du contenu problématique.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function togglePriceField() {
+    const priceType = document.getElementById('price_type').value;
+    const priceGroup = document.getElementById('price-group');
+    const priceInput = document.getElementById('price');
+    
+    if (priceType === 'paid') {
+        priceGroup.style.display = 'block';
+        priceInput.required = true;
+    } else {
+        priceGroup.style.display = 'none';
+        priceInput.required = false;
+    }
+}
+
+// File upload preview
+const fileInput = document.getElementById('file');
+if (fileInput) {
+    fileInput.addEventListener('change', function(e) {
+        const fileName = this.files[0]?.name;
+        const filePreview = document.getElementById('file-preview');
+        if (fileName) {
+            filePreview.innerHTML = `<span style="color: #fec89a; font-weight: 600;"><i class="fa fa-check-circle"></i> ${fileName}</span>`;
+        }
+    });
+}
+</script>
+
+{% endblock %}

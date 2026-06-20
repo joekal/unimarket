@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact — UniMarket{% endblock %}
+{% block meta_description %}Contactez-nous - UniMarket, la plateforme de services pour les étudiants de l'UPC.{% endblock %}
+
+{% block content %}
+    <!-- PAGE HERO / BREADCRUMB -->
+    <section class="ve-page-hero" style="background-image:url({% static 'img/bg-img/4.jpg' %});">
+        <div class="ve-page-hero-overlay"></div>
+        <div class="container ve-page-hero-content">
+            <h1>Contact</h1>
+            <div class="ve-breadcrumb-info">
+                <p><i class="fa fa-phone"></i> <a href="tel:+243823949767">+243 823 949 767</a> <a href="tel:+243831216667">+243 831 216 667</a> <a href="tel:+243896618804">+243 896 618 804</a></p>
+                <p><i class="fa fa-map-marker"></i> Université Protestante au Congo</p>
+                <p><i class="fa fa-envelope-o"></i> <a href="mailto:support@unimarket.com">support@unimarket.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="ve-section ve-contact-section">
+        <div class="container">
+            <div class="ve-contact-grid">
+                <div class="ve-contact-card">
+                    <div class="ve-contact-panel">
+                        <span class="ve-section-tag">Contact</span>
+                        <h2>Besoin d'aide ?</h2>
+                        <p>Notre équipe UniMarket est là pour répondre à toutes vos questions. Écrivez-nous ou utilisez les coordonnées directes ci-dessous.</p>
+                    </div>
+
+                    <div class="ve-contact-info">
+                        <div class="ve-contact-info-item">
+                            <i class="fa fa-phone"></i>
+                            <div>
+                                <h5>Support Téléphonique</h5>
+                                <p><a href="tel:+243823949767">+243 823 949 767</a></p>
+                                <p><a href="tel:+243831216667">+243 831 216 667</a></p>
+                                <p><a href="tel:+243896618804">+243 896 618 804</a></p>
+                            </div>
+                        </div>
+                        <div class="ve-contact-info-item">
+                            <i class="fa fa-envelope"></i>
+                            <div>
+                                <h5>Email</h5>
+                                <p><a href="mailto:support@unimarket.com">support@unimarket.com</a></p>
+                            </div>
+                        </div>
+                        <div class="ve-contact-info-item">
+                            <i class="fa fa-map-marker"></i>
+                            <div>
+                                <h5>Localisation</h5>
+                                <p>Université Protestante au Congo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ve-contact-card">
+                    <div class="ve-form-card ve-form-card--contact">
+                        <div class="ve-contact-form-title">
+                            <span>Formulaire de Contact</span>
+                            <h3>Envoyez-nous un message</h3>
+                        </div>
+
+                        {% if success %}
+                            <div class="ve-alert ve-alert-success">
+                                <strong>✓ Succès!</strong> {{ success_message }}
+                            </div>
+                        {% endif %}
+
+                        {% if errors %}
+                            <div class="ve-alert ve-alert-error">
+                                {% for error in errors %}
+                                    <p>✗ {{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <form action="{% url 'contact' %}" method="post" class="ve-contact-form">
+                            {% csrf_token %}
+                            <div class="ve-form-group">
+                                <label for="name">Nom</label>
+                                <input id="name" type="text" name="name" placeholder="Votre Nom" required value="{{ form_data.name|default:'' }}">
+                            </div>
+                            <div class="ve-form-group">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" name="email" placeholder="Votre Email" required value="{{ form_data.email|default:'' }}">
+                            </div>
+                            <div class="ve-form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="8" placeholder="Votre Message" required>{{ form_data.message|default:'' }}</textarea>
+                            </div>
+                            <button type="submit" class="ve-btn-primary ve-btn-full">Envoyer Message</button>
+                        </form>
+                    </div>
+
+                    <div class="ve-map-area">
+                        <div id="googleMap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .ve-contact-section {
+        padding: 50px 0 80px;
+    }
+    .ve-contact-grid {
+        display: grid;
+        grid-template-columns: 360px minmax(0, 1fr);
+        gap: 30px;
+    }
+    .ve-contact-card {
+        background: #fff;
+        border: 1px solid var(--ve-border);
+        border-radius: var(--ve-radius);
+        padding: 30px;
+        box-shadow: var(--ve-shadow);
+    }
+    .ve-contact-panel {
+        margin-bottom: 30px;
+    }
+    .ve-contact-panel h2 {
+        margin: 12px 0 10px;
+        font-size: 32px;
+        line-height: 1.1;
+        color: var(--ve-dark);
+    }
+    .ve-contact-panel p {
+        color: var(--ve-text);
+        line-height:1.8;
+        margin: 0;
+    }
+    .ve-contact-info {
+        display: grid;
+        gap: 20px;
+    }
+    .ve-contact-info-item {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    .ve-contact-info-item i {
+        font-size: 20px;
+        color: var(--ve-gold);
+        min-width: 24px;
+    }
+    .ve-contact-info-item h5 {
+        margin: 0 0 6px;
+        font-size: 14px;
+        color: var(--ve-dark);
+        font-weight: 700;
+    }
+    .ve-contact-info-item p,
+    .ve-contact-info-item a {
+        margin: 0;
+        color: var(--ve-text);
+        font-size: 14px;
+        line-height: 1.6;
+        text-decoration: none;
+    }
+    .ve-contact-info-item a:hover {
+        color: var(--ve-gold);
+    }
+    .ve-form-card--contact {
+        padding: 28px;
+    }
+    .ve-contact-form-title span {
+        display: inline-block;
+        color: var(--ve-gold);
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        font-size: 12px;
+    }
+    .ve-contact-form-title h3 {
+        margin: 0 0 25px;
+        font-size: 28px;
+        color: var(--ve-dark);
+    }
+    .ve-alert {
+        border-radius: 12px;
+        padding: 18px 20px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    .ve-alert-success {
+        background: rgba(46, 204, 113, 0.12);
+        border: 1px solid rgba(46, 204, 113, 0.25);
+        color: #184d24;
+    }
+    .ve-alert-error {
+        background: rgba(242, 38, 19, 0.08);
+        border: 1px solid rgba(242, 38, 19, 0.18);
+        color: #7d1f1f;
+    }
+    .ve-alert p {
+        margin: 0 0 8px;
+    }
+    .ve-contact-form .ve-form-group {
+        margin-bottom: 20px;
+    }
+    .ve-contact-form .ve-form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ve-dark);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+    .ve-contact-form .ve-form-group input,
+    .ve-contact-form .ve-form-group textarea {
+        width: 100%;
+        border: 1px solid var(--ve-border);
+        border-radius: 12px;
+        padding: 14px 16px;
+        font-size: 15px;
+        color: var(--ve-dark);
+        background: #faf9f6;
+        transition: var(--ve-trans);
+    }
+    .ve-contact-form .ve-form-group input:focus,
+    .ve-contact-form .ve-form-group textarea:focus {
+        outline: none;
+        border-color: var(--ve-gold);
+        box-shadow: 0 0 0 3px rgba(254, 200, 154, 0.15);
+    }
+    .ve-map-area {
+        margin-top: 30px;
+        min-height: 360px;
+        border-radius: 20px;
+        overflow: hidden;
+        background: #f8f7f3;
+        border: 1px solid var(--ve-border);
+    }
+    #googleMap {
+        width: 100%;
+        height: 100%;
+        min-height: 360px;
+    }
+    @media (max-width: 991px) {
+        .ve-contact-grid {
+            grid-template-columns: 1fr;
+        }
+        .ve-map-area {
+            min-height: 280px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var map = new google.maps.Map(document.getElementById('googleMap'), {
+        zoom: 15,
+        center: { lat: 36.7667, lng: 3.0667 },
+        mapTypeControl: true
+    });
+    new google.maps.Marker({
+        position: { lat: 36.7667, lng: 3.0667 },
+        map: map,
+        title: 'UniMarket - Campus'
+    });
+});
+</script>
+{% endblock %}

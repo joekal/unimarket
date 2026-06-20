@@ -1,0 +1,468 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mathfilters %}
+
+{% block title %}Accueil - UniMarket | Marché des Étudiants UPC{% endblock %}
+
+{% block meta_description %}UniMarket - Le marché interne des étudiants de l'UPC. Partagez vos livres, documents, services académiques et trouvez ce dont vous avez besoin.{% endblock %}
+
+{% block content %}
+    <!-- ===== HERO: Carousel with centered text ===== -->
+    <section class="ve-hero ve-hero-carousel-section">
+        <!-- Carousel Background -->
+        <div class="ve-hero-carousel-container">
+            <div class="ve-carousel-slide active" style="background-image:url({% static 'img/bg-img/1.jpg' %});"></div>
+            <div class="ve-carousel-slide" style="background-image:url({% static 'img/bg-img/2.jpg' %});"></div>
+            <div class="ve-carousel-slide" style="background-image:url({% static 'img/bg-img/3.jpg' %});"></div>
+            <!-- Overlay gradient -->
+            <div class="ve-hero-carousel-overlay"></div>
+        </div>
+        
+        <!-- Centered Content -->
+        <div class="ve-hero-content">
+            <span class="ve-hero-badge">Plateforme Dédiée aux Étudiants UPC &nbsp;·&nbsp; 100% Gratuit</span>
+            <h1>Partage & Échange de <span class="ve-highlight">Services</span><br>Académiques</h1>
+            <p>UniMarket est le marché interne des étudiants UPC. Partagez vos supports d'étude, vos livres, vos services et trouvez ce dont vous avez besoin.</p>
+            <div class="ve-hero-btns">
+                <a href="{% url 'services' %}" class="ve-btn-primary">Parcourir les Services</a>
+                <a href="{% url 'about' %}" class="ve-btn-ghost">En Savoir Plus</a>
+            </div>
+            <!-- Quick Stats Row -->
+            <div class="ve-hero-stats">
+                <div class="ve-stat">
+                    <strong>{{ total_listings }}+</strong>
+                    <span>Services Actifs</span>
+                </div>
+                <div class="ve-stat-divider"></div>
+                <div class="ve-stat">
+                    <strong>{{ total_users }}+</strong>
+                    <span>Utilisateurs</span>
+                </div>
+                <div class="ve-stat-divider"></div>
+                <div class="ve-stat">
+                    <strong>⭐ {{ avg_rating }}</strong>
+                    <span>Notation Moyenne</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MARQUEE TRUST BAR ===== -->
+    <div class="ve-trust-bar">
+        <div class="ve-trust-inner">
+            <span><i class="fa fa-lock"></i> Authentification Verifiee</span>
+            <span><i class="fa fa-check-circle"></i> Communaute Securisee</span>
+            <span><i class="fa fa-users"></i> {{ total_users }}+ Etudiants Actifs</span>
+            <span><i class="fa fa-star"></i> {{ total_reviews }}+ Temoignages</span>
+            <span><i class="fa fa-graduation-cap"></i> {{ faculty_count }} Facultes Representees</span>
+            <span><i class="fa fa-briefcase"></i> {{ total_listings }}+ Services Disponibles</span>
+            <span><i class="fa fa-lock"></i> Authentification Verifiee</span>
+            <span><i class="fa fa-check-circle"></i> Communaute Securisee</span>
+            <span><i class="fa fa-users"></i> {{ total_users }}+ Etudiants Actifs</span>
+            <span><i class="fa fa-star"></i> {{ total_reviews }}+ Temoignages</span>
+        </div>
+    </div>
+
+    <!-- ===== SERVICES GRID (new card layout) ===== -->
+    <section class="ve-section ve-services-section">
+        <div class="container">
+            <div class="ve-section-header text-center">
+                <span class="ve-section-tag">Nos Categories</span>
+                <h2>Echangez des Services <span>Academiques</span></h2>
+                <p>Livres, documents, cours, anciens examens et plus encore — tous les services dont vous avez besoin.</p>
+            </div>
+            <div class="ve-services-grid">
+                {% comment %} Servicios predefinidos si no hay en la BD {% endcomment %}
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="100ms">
+                    <div class="ve-service-icon"><i class="fa fa-book"></i></div>
+                    <h4>Livres &amp; Supports</h4>
+                    <p>Partage et achat de livres de cours, polycopies, notes de classe et ressources.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="200ms">
+                    <div class="ve-service-icon"><i class="fa fa-file-pdf-o"></i></div>
+                    <h4>Documents Academiques</h4>
+                    <p>Resumes, TD, TP, rapports de projets et documentation complete.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="300ms">
+                    <div class="ve-service-icon"><i class="fa fa-graduation-cap"></i></div>
+                    <h4>Cours Particuliers</h4>
+                    <p>Offres de cours prives et tutorat peer-to-peer avec nos meilleurs etudiants.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="400ms">
+                    <div class="ve-service-icon"><i class="fa fa-history"></i></div>
+                    <h4>Anciens Examens</h4>
+                    <p>Examens avec corriges, questions types et tous les sujets des annees precedentes.</p>
+                    <a href="{% url 'posts' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="500ms">
+                    <div class="ve-service-icon"><i class="fa fa-wrench"></i></div>
+                    <h4>Assistance Technique</h4>
+                    <p>Aide informatique, support technique et depannage entre etudiants.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="600ms">
+                    <div class="ve-service-icon"><i class="fa fa-briefcase"></i></div>
+                    <h4>Ressources Professionnelles</h4>
+                    <p>Conseils carriere, CV, preparation aux entretiens et ressources pro.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="700ms">
+                    <div class="ve-service-icon"><i class="fa fa-star"></i></div>
+                    <h4>Autres Services</h4>
+                    <p>Decouvrez d'autres types de services proposes par notre communaute.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY US (two-column: image left, content right) ===== -->
+    <section class="ve-section ve-whyus-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Image Side -->
+                <div class="col-12 col-lg-5">
+                    <div class="ve-whyus-img-wrap wow fadeInLeft" data-wow-delay="100ms">
+                        <div class="ve-whyus-img-main bg-img" style="background-image:url({% static 'img/bg-img/5.jpg' %});"></div>
+                        <div class="ve-whyus-badge">
+                            <strong>2026</strong>
+                            <span>Creee pour les Etudiants</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Side -->
+                <div class="col-12 col-lg-7 wow fadeInRight" data-wow-delay="200ms">
+                    <div class="ve-whyus-content">
+                        <span class="ve-section-tag">Pourquoi UniMarket</span>
+                        <h2>L'Entraide <span>Entre Etudiants</span></h2>
+                        <p>UniMarket cree par et pour les etudiants de l'UPC — une plateforme securisee, fiable et 100% gratuite pour echanger vos ressources academiques.</p>
+                        <div class="ve-checklist">
+                            <div class="ve-check-item">
+                                <i class="fa fa-check-circle"></i>
+                                <div><strong>Communaute Verifiee</strong><p>Tous nos utilisateurs sont des etudiants confirmes de l'UPC avec authentification double.</p></div>
+                            </div>
+                            <div class="ve-check-item">
+                                <i class="fa fa-check-circle"></i>
+                                <div><strong>Plateforme Gratuite</strong><p>Aucuns frais d'inscription ni de transaction — echangez gratuitement.</p></div>
+                            </div>
+                            <div class="ve-check-item">
+                                <i class="fa fa-check-circle"></i>
+                                <div><strong>Support Etudiant 24/24</strong><p>Contactez-nous via WhatsApp ou email pour toute aide ou question.</p></div>
+                            </div>
+                        </div>
+                        <a href="{% url 'about' %}" class="ve-btn-primary mt-30">Decouvrir Notre Histoire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COUNTERS ===== -->
+    <section class="ve-counter-section">
+        <div class="container">
+            <div class="ve-counter-grid">
+                <div class="ve-counter-item wow fadeInUp" data-wow-delay="100ms">
+                    <i class="fa fa-users"></i>
+                    <strong>{{ total_users }}</strong><span>+</span>
+                    <p>Etudiants Actifs</p>
+                </div>
+                <div class="ve-counter-item wow fadeInUp" data-wow-delay="200ms">
+                    <i class="fa fa-briefcase"></i>
+                    <strong>{{ total_listings }}</strong><span>+</span>
+                    <p>Services Disponibles</p>
+                </div>
+                <div class="ve-counter-item wow fadeInUp" data-wow-delay="300ms">
+                    <i class="fa fa-graduation-cap"></i>
+                    <strong>{{ faculty_count }}</strong>
+                    <p>Facultes Representees</p>
+                </div>
+                <div class="ve-counter-item wow fadeInUp" data-wow-delay="400ms">
+                    <i class="fa fa-star"></i>
+                    <strong>{{ avg_rating }}</strong><span>/5</span>
+                    <p>Note Moyenne</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ===== CTA BANNER ===== -->
+    <section class="ve-cta-banner bg-img" style="background-image:url({% static 'img/bg-img/6.jpg' %});">
+        <div class="ve-cta-overlay"></div>
+        <div class="container ve-cta-content">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-8">
+                    <h2>Pret a Rejoindre la <span>Communaute UniMarket?</span></h2>
+                    <p>Inscrivez-vous gratuitement et commencez a echanger avec 1000+ etudiants de l'UPC.</p>
+                </div>
+                <div class="col-12 col-lg-4 text-lg-right">
+                    <a href="{% url 'signup' %}" class="ve-btn-white">S'inscrire Maintenant</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LATEST INSIGHTS ===== -->
+    <section class="ve-section ve-insights-section">
+        <div class="container">
+            <div class="ve-section-header text-center">
+                <span class="ve-section-tag">Ressources</span>
+                <h2>BATs et Documents <span>Recents</span></h2>
+                <p>Les derniers documents partages par nos contributeurs — mises a jour quotidiennement.</p>
+            </div>
+            <div class="row">
+                <!-- Derniers listings/services (3 derniers) -->
+                {% for listing in recent_listings %}
+                <div class="col-12 col-md-4 wow fadeInUp" data-wow-delay="{{ forloop.counter|mul:150 }}ms">
+                    <div class="ve-insight-card">
+                        <div class="ve-insight-img bg-img" style="background-image:url({% if listing.image %}{{ listing.image.url }}{% else %}{% static 'img/bg-img/10.jpg' %}{% endif %});"></div>
+                        <div class="ve-insight-body">
+                            <span class="ve-insight-cat">{{ listing.category.name|default:"Services" }}</span>
+                            <h5><a href="{% url 'post_detail' listing.slug %}">{{ listing.title }}</a></h5>
+                            <p>{{ listing.description|truncatewords:15 }} par {{ listing.seller.user.get_full_name|default:"Anonyme" }} ({{ listing.get_price_display }})</p>
+                            <div class="ve-insight-meta">
+                                <span><i class="fa fa-calendar"></i> {{ listing.created_at|date:"M d" }}</span>
+                                <a href="{% url 'post_detail' listing.slug %}">Voir plus <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <p>Aucun service disponible pour le moment.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FACULTÉS SECTION ===== -->
+    <section class="ve-section ve-facilities-section" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="ve-section-header text-center">
+                <span class="ve-section-tag">Nos Facultés</span>
+                <h2>Représentation des <span>Spécialités</span></h2>
+                <p>UniMarket accueille des étudiants de toutes les facultés de l'UPC</p>
+            </div>
+            <div class="ve-specialties-grid">
+                {% for specialty in specialties %}
+                <div class="ve-specialty-card wow fadeInUp" data-wow-delay="{{ forloop.counter|mul:100 }}ms">
+                    <div class="ve-specialty-icon">
+                        {% if specialty.code == 'THEOLOGIE' %}<i class="fa fa-book"></i>
+                        {% elif specialty.code == 'MEDECINE' %}<i class="fa fa-heartbeat"></i>
+                        {% elif specialty.code == 'DROIT' %}<i class="fa fa-balance-scale"></i>
+                        {% elif specialty.code == 'ECONOMIE' %}<i class="fa fa-line-chart"></i>
+                        {% else %}<i class="fa fa-laptop"></i>
+                        {% endif %}
+                    </div>
+                    <h5>{{ specialty.name }}</h5>
+                    <p class="ve-specialty-count">{{ specialty.count }}+</p>
+                    <span class="ve-specialty-label">Étudiants</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TÉMOIGNAGES SECTION ===== -->
+    <section class="ve-section ve-testimonials-section">
+        <div class="container">
+            <div class="ve-section-header text-center">
+                <span class="ve-section-tag">Retours d'Étudiants</span>
+                <h2>Ce que Pensent nos <span>Utilisateurs</span></h2>
+                <p>Découvrez les témoignages authentiques de notre communauté</p>
+            </div>
+            <div class="row">
+                {% for testimonial in testimonials|slice:":3" %}
+                <div class="col-12 col-md-4 wow fadeInUp" data-wow-delay="{{ forloop.counter|mul:150 }}ms">
+                    <div class="ve-testi-card">
+                        <div class="ve-testi-stars">
+                            {% for i in "x"|rjust:testimonial.rating %}&#9733;{% endfor %}
+                        </div>
+                        <p>"{{ testimonial.comment|truncatewords:25 }}"</p>
+                        <div class="ve-testi-author">
+                            <div class="ve-testi-avatar bg-img" style="background-image:url({% static 'img/bg-img/' %}{{ forloop.counter|add:31 }}.jpg);"></div>
+                            <div>
+                                <strong>{{ testimonial.reviewer_name|default:testimonial.reviewer.user.get_full_name }}</strong>
+                                <span>{{ testimonial.reviewer.specialty|default:"UPC" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if user.is_authenticated %}
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="{% url 'contact' %}" class="ve-btn-primary">Partager votre Témoignage</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- ===== MODAL DE CALIFICATION ET TEMOIGNAGE ===== -->
+    <div id="ratingModal" class="ve-modal" style="display: none;">
+        <div class="ve-modal-content" style="background: white; padding: 40px; border-radius: 15px; max-width: 500px; box-shadow: 0 5px 30px rgba(0,0,0,0.2); margin: auto;">
+            <div style="text-align: right; margin-bottom: 20px;">
+                <button type="button" class="ve-modal-close" onclick="closeRatingModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">&times;</button>
+            </div>
+            <h3 style="margin-bottom: 10px; font-size: 20px;">Comment était votre expérience?</h3>
+            <p style="color: #666; margin-bottom: 25px;">Aidez-nous à améliorer UniMarket en partageant votre avis</p>
+            
+            <!-- Rating Stars -->
+            <div style="text-align: center; margin-bottom: 25px;">
+                <div style="font-size: 50px; letter-spacing: 15px; display: flex; justify-content: center;">
+                    <span class="rating-star" data-rating="1" onclick="setRating(1)" style="cursor: pointer; color: #ddd; transition: color 0.3s;">★</span>
+                    <span class="rating-star" data-rating="2" onclick="setRating(2)" style="cursor: pointer; color: #ddd; transition: color 0.3s;">★</span>
+                    <span class="rating-star" data-rating="3" onclick="setRating(3)" style="cursor: pointer; color: #ddd; transition: color 0.3s;">★</span>
+                    <span class="rating-star" data-rating="4" onclick="setRating(4)" style="cursor: pointer; color: #ddd; transition: color 0.3s;">★</span>
+                    <span class="rating-star" data-rating="5" onclick="setRating(5)" style="cursor: pointer; color: #ddd; transition: color 0.3s;">★</span>
+                </div>
+            </div>
+            
+            <!-- Testimonial TextArea -->
+            <textarea id="testimonialText" placeholder="Partagez votre expérience (optionnel)" style="width: 100%; height: 120px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; resize: vertical; margin-bottom: 20px; box-sizing: border-box;"></textarea>
+            
+            <!-- Hidden inputs -->
+            <input type="hidden" id="ratingValue" value="5">
+            <input type="hidden" id="serviceId" value="">
+            
+            <!-- Buttons -->
+            <div style="display: flex; gap: 10px;">
+                <button type="button" onclick="skipRating()" style="flex: 1; padding: 12px; border: 2px solid #ddd; background: white; cursor: pointer; border-radius: 8px; font-weight: bold; color: #666;">Ignorer</button>
+                <button type="button" onclick="submitRating()" style="flex: 1; padding: 12px; background: #fec89a; border: none; cursor: pointer; border-radius: 8px; font-weight: bold;">Soumettre</button>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .ve-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .ve-modal-content {
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+    
+    <script>
+        // Check if we need to show rating modal (after posting/using service)
+        function checkRatingModalTrigger() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('show_rating') === '1') {
+                const serviceId = urlParams.get('service_id');
+                if (serviceId) {
+                    document.getElementById('serviceId').value = serviceId;
+                    showRatingModal();
+                }
+            }
+        }
+        
+        function showRatingModal() {
+            document.getElementById('ratingModal').style.display = 'flex';
+        }
+        
+        function closeRatingModal() {
+            document.getElementById('ratingModal').style.display = 'none';
+        }
+        
+        function setRating(rating) {
+            // Update all stars
+            document.querySelectorAll('.rating-star').forEach((star, index) => {
+                if (index < rating) {
+                    star.style.color = '#fec89a';
+                } else {
+                    star.style.color = '#ddd';
+                }
+            });
+            document.getElementById('ratingValue').value = rating;
+        }
+        
+        function submitRating() {
+            const rating = document.getElementById('ratingValue').value;
+            const testimonial = document.getElementById('testimonialText').value;
+            const serviceId = document.getElementById('serviceId').value;
+            
+            if (!serviceId) {
+                alert('Erreur: Service ID manquant');
+                return;
+            }
+            
+            // Send AJAX request
+            fetch('{% url 'add_review' %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({
+                    service_id: serviceId,
+                    rating: parseInt(rating),
+                    comment: testimonial
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Merci pour votre témoignage!');
+                    closeRatingModal();
+                    // Remove the URL parameter
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                } else {
+                    alert('Erreur: ' + (data.error || 'Impossible de soumettre'));
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert('Erreur de connexion');
+            });
+        }
+        
+        function skipRating() {
+            closeRatingModal();
+            // Remove the URL parameter
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        // Check on page load
+        document.addEventListener('DOMContentLoaded', checkRatingModalTrigger);
+    </script>
+{% endblock %}

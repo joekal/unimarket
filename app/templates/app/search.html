@@ -1,0 +1,597 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% if search_query %}Résultats: {{ search_query }} — UniMarket{% else %}Recherche — UniMarket{% endif %}{% endblock %}
+{% block meta_description %}Recherchez des documents, des services et des ressources sur UniMarket.{% endblock %}
+
+{% block content %}
+    <!-- PAGE HERO -->
+    <section class="ve-page-hero" style="background-image:url({% static 'img/bg-img/24.jpg' %});">
+        <div class="ve-page-hero-overlay"></div>
+        <div class="container ve-page-hero-content">
+            <span class="ve-section-tag">Trouvez ce que vous cherchez</span>
+            <h1>Recherche</h1>
+            <nav aria-label="breadcrumb"><ol class="ve-breadcrumb"><li><a href="{% url 'home' %}">Accueil</a></li><li class="active">Recherche</li></ol></nav>
+        </div>
+    </section>
+
+    <!-- SEARCH SECTION -->
+    <section class="ve-section">
+        <div class="container">
+            <!-- SEARCH BAR -->
+            <div class="ve-search-section">
+                <form method="GET" action="{% url 'search' %}" class="ve-search-form-large">
+                    <div class="ve-search-input-wrapper">
+                        <i class="fa fa-search"></i>
+                        <input 
+                            type="text" 
+                            name="q" 
+                            placeholder="Rechercher documents, services, ressources..."
+                            value="{{ search_query }}"
+                            class="ve-search-input-large"
+                        >
+                        <button type="submit" class="ve-search-submit">
+                            <i class="fa fa-search"></i> Rechercher
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- RESULTS -->
+            {% if search_query %}
+                {% if results.total > 0 %}
+                    <div class="ve-search-results">
+                        <h3 class="ve-results-title">
+                            Résultats pour "<strong>{{ search_query }}</strong>"
+                            <span class="ve-results-count">({{ results.total }})</span>
+                        </h3>
+
+                        <!-- DOCUMENTS -->
+                        {% if results.files %}
+                        <div class="ve-results-section">
+                            <h4 class="ve-results-category">
+                                <i class="fa fa-file-pdf-o"></i> Documents Académiques
+                            </h4>
+                            <div class="ve-results-grid">
+                                {% for file in results.files %}
+                                <div class="ve-result-card ve-result-file">
+                                    <div class="ve-result-header">
+                                        <span class="ve-result-category-badge">{{ file.get_category_display }}</span>
+                                        <span class="ve-result-type-badge">{{ file.file_type }}</span>
+                                    </div>
+                                    <h5><a href="{% url 'posts' %}?id={{ file.id }}">{{ file.title }}</a></h5>
+                                    <p class="ve-result-description">{{ file.description|truncatewords:15 }}</p>
+                                    <div class="ve-result-meta">
+                                        <span class="ve-result-subject">
+                                            <i class="fa fa-book"></i> {{ file.subject|default:"Académique" }}
+                                        </span>
+                                        <span class="ve-result-info">
+                                            <i class="fa fa-download"></i> {{ file.downloads_count }}
+                                        </span>
+                                    </div>
+                                    <div class="ve-result-footer">
+                                        <span class="ve-result-author">
+                                            Par {{ file.uploader.user.get_full_name|default:"Anonyme"|truncatewords:2 }}
+                                        </span>
+                                        <span class="ve-result-rating">
+                                            <i class="fa fa-star"></i> {{ file.rating|floatformat:1 }}
+                                        </span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- ANNONCES -->
+                        {% if results.listings %}
+                        <div class="ve-results-section">
+                            <h4 class="ve-results-category">
+                                <i class="fa fa-shopping-bag"></i> Annonces
+                            </h4>
+                            <div class="ve-results-grid">
+                                {% for listing in results.listings %}
+                                <div class="ve-result-card ve-result-listing">
+                                    <div class="ve-result-image">
+                                        <img src="{{ listing.image.url }}" alt="{{ listing.title }}">
+                                        <span class="ve-result-status">{{ listing.get_status_display }}</span>
+                                    </div>
+                                    <div class="ve-result-body">
+                                        <div class="ve-result-header">
+                                            <span class="ve-result-category-badge">{{ listing.category.name }}</span>
+                                            <span class="ve-result-condition-badge">{{ listing.get_condition_display }}</span>
+                                        </div>
+                                        <h5><a href="#">{{ listing.title }}</a></h5>
+                                        <p class="ve-result-description">{{ listing.description|truncatewords:15 }}</p>
+                                        <div class="ve-result-meta">
+                                            <span class="ve-result-location">
+                                                <i class="fa fa-map-marker"></i> {{ listing.location }}
+                                            </span>
+                                            <span class="ve-result-info">
+                                                <i class="fa fa-eye"></i> {{ listing.views_count }} vues
+                                            </span>
+                                        </div>
+                                        <div class="ve-result-footer">
+                                            <span class="ve-result-author">
+                                                Par {{ listing.seller.user.get_full_name|default:"Anonyme"|truncatewords:2 }}
+                                            </span>
+                                            <span class="ve-result-price">{{ listing.get_price_display }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="ve-no-results">
+                        <div class="ve-no-results-icon">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <h3>Aucun résultat trouvé</h3>
+                        <p>
+                            Aucun document ou annonce ne correspond à votre recherche 
+                            "<strong>{{ search_query }}</strong>"
+                        </p>
+                        <div class="ve-suggestions">
+                            <h5>Suggestions :</h5>
+                            <ul>
+                                <li>Vérifiez l'orthographe de votre requête</li>
+                                <li>Essayez des mots-clés différents</li>
+                                <li>Utilisez des termes plus généraux</li>
+                                <li><a href="{% url 'posts' %}">Parcourez les documents</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="ve-search-empty">
+                    <div class="ve-search-empty-icon">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <h3>Qu'est-ce que vous cherchez?</h3>
+                    <p>Entrez un mot-clé pour rechercher parmi tous les documents et services disponibles.</p>
+                    <div class="ve-search-suggestions">
+                        <h5>Recherches populaires :</h5>
+                        <div class="ve-suggestion-tags">
+                            <a href="{% url 'search' %}?q=Mathématiques" class="ve-suggestion-tag">Mathématiques</a>
+                            <a href="{% url 'search' %}?q=Informatique" class="ve-suggestion-tag">Informatique</a>
+                            <a href="{% url 'search' %}?q=Anglais" class="ve-suggestion-tag">Anglais</a>
+                            <a href="{% url 'search' %}?q=Cours" class="ve-suggestion-tag">Cours Particuliers</a>
+                            <a href="{% url 'search' %}?q=Examen" class="ve-suggestion-tag">Examen</a>
+                            <a href="{% url 'search' %}?q=Corrigé" class="ve-suggestion-tag">Corrigés</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Search Section */
+    .ve-search-section {
+        margin-bottom: 50px;
+    }
+
+    .ve-search-form-large {
+        width: 100%;
+    }
+
+    .ve-search-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        background: #fff;
+        border: 2px solid var(--ve-border);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--ve-shadow);
+        transition: var(--ve-trans);
+    }
+
+    .ve-search-input-wrapper:focus-within {
+        border-color: var(--ve-gold);
+        box-shadow: 0 8px 30px rgba(254, 200, 154, 0.15);
+    }
+
+    .ve-search-input-wrapper i {
+        padding: 0 20px;
+        color: var(--ve-text);
+        font-size: 18px;
+    }
+
+    .ve-search-input-large {
+        flex: 1;
+        border: none;
+        padding: 16px 0;
+        font-size: 15px;
+        font-family: inherit;
+        background: transparent;
+    }
+
+    .ve-search-input-large:focus {
+        outline: none;
+    }
+
+    .ve-search-submit {
+        padding: 16px 30px;
+        background: var(--ve-gold);
+        border: none;
+        color: var(--ve-dark);
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--ve-trans);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+
+    .ve-search-submit:hover {
+        background: #f5b877;
+    }
+
+    /* Results Title */
+    .ve-results-title {
+        font-size: 22px;
+        color: var(--ve-dark);
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .ve-results-count {
+        font-size: 14px;
+        background: var(--ve-light);
+        color: var(--ve-text);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    /* Results Section */
+    .ve-results-section {
+        margin-bottom: 50px;
+    }
+
+    .ve-results-category {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--ve-dark);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--ve-border);
+    }
+
+    .ve-results-category i {
+        color: var(--ve-gold);
+        font-size: 18px;
+    }
+
+    /* Results Grid */
+    .ve-results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    /* Result Card */
+    .ve-result-card {
+        background: #fff;
+        border-radius: var(--ve-radius);
+        overflow: hidden;
+        box-shadow: var(--ve-shadow);
+        transition: var(--ve-trans);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ve-result-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .ve-result-file {
+        padding: 20px;
+    }
+
+    .ve-result-listing .ve-result-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        background: var(--ve-light);
+    }
+
+    .ve-result-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--ve-trans);
+    }
+
+    .ve-result-card:hover .ve-result-image img {
+        transform: scale(1.05);
+    }
+
+    .ve-result-status,
+    .ve-result-condition-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--ve-gold);
+        color: var(--ve-dark);
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .ve-result-image {
+        position: relative;
+    }
+
+    .ve-result-body {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ve-result-header {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+
+    .ve-result-category-badge {
+        display: inline-block;
+        background: rgba(254, 200, 154, 0.15);
+        color: var(--ve-gold);
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .ve-result-type-badge,
+    .ve-result-condition-badge {
+        display: inline-block;
+        background: var(--ve-light);
+        color: var(--ve-text);
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    .ve-result-card h5 {
+        margin: 0 0 10px;
+        font-size: 15px;
+        color: var(--ve-dark);
+        line-height: 1.4;
+    }
+
+    .ve-result-card h5 a {
+        color: var(--ve-dark);
+        text-decoration: none;
+        transition: var(--ve-trans);
+    }
+
+    .ve-result-card h5 a:hover {
+        color: var(--ve-gold);
+    }
+
+    .ve-result-description {
+        margin: 0 0 12px;
+        font-size: 13px;
+        color: var(--ve-text);
+        line-height: 1.5;
+        flex: 1;
+    }
+
+    .ve-result-meta {
+        display: flex;
+        gap: 15px;
+        font-size: 12px;
+        color: var(--ve-text);
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+
+    .ve-result-subject,
+    .ve-result-location {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .ve-result-info {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .ve-result-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 12px;
+        border-top: 1px solid var(--ve-border);
+        font-size: 12px;
+    }
+
+    .ve-result-author {
+        color: var(--ve-text);
+    }
+
+    .ve-result-rating,
+    .ve-result-price {
+        color: var(--ve-gold);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    /* No Results */
+    .ve-no-results,
+    .ve-search-empty {
+        text-align: center;
+        padding: 60px 20px;
+        background: var(--ve-light);
+        border-radius: var(--ve-radius);
+    }
+
+    .ve-no-results-icon,
+    .ve-search-empty-icon {
+        font-size: 80px;
+        color: var(--ve-gold);
+        opacity: 0.5;
+        margin-bottom: 20px;
+    }
+
+    .ve-no-results h3,
+    .ve-search-empty h3 {
+        font-size: 24px;
+        color: var(--ve-dark);
+        margin: 0 0 10px;
+    }
+
+    .ve-no-results > p,
+    .ve-search-empty > p {
+        color: var(--ve-text);
+        margin-bottom: 30px;
+        font-size: 15px;
+    }
+
+    /* Suggestions */
+    .ve-suggestions,
+    .ve-search-suggestions {
+        text-align: left;
+        background: #fff;
+        border-radius: var(--ve-radius);
+        padding: 30px;
+        display: inline-block;
+    }
+
+    .ve-suggestions h5,
+    .ve-search-suggestions h5 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ve-dark);
+        margin: 0 0 15px;
+    }
+
+    .ve-suggestions ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .ve-suggestions li {
+        padding: 8px 0;
+        color: var(--ve-text);
+        font-size: 13px;
+    }
+
+    .ve-suggestions a {
+        color: var(--ve-gold);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .ve-suggestions a:hover {
+        text-decoration: underline;
+    }
+
+    /* Suggestion Tags */
+    .ve-suggestion-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .ve-suggestion-tag {
+        display: inline-block;
+        background: rgba(254, 200, 154, 0.15);
+        color: var(--ve-gold);
+        padding: 8px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: var(--ve-trans);
+    }
+
+    .ve-suggestion-tag:hover {
+        background: var(--ve-gold);
+        color: var(--ve-dark);
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+        .ve-search-input-wrapper {
+            flex-direction: column;
+        }
+
+        .ve-search-input-large {
+            width: 100%;
+            padding: 12px;
+        }
+
+        .ve-search-submit {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .ve-results-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+    }
+
+    @media (max-width: 767px) {
+        .ve-results-title {
+            font-size: 18px;
+            flex-wrap: wrap;
+        }
+
+        .ve-results-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .ve-result-footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .ve-suggestions,
+        .ve-search-suggestions {
+            padding: 20px;
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Auto-focus search input on page load
+    window.addEventListener('load', function() {
+        const searchInput = document.querySelector('.ve-search-input-large');
+        if (searchInput && !searchInput.value) {
+            searchInput.focus();
+        }
+    });
+</script>
+{% endblock %}

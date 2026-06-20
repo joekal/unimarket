@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Services — UniMarket | Catégories d'Échange{% endblock %}
+
+{% block meta_description %}UniMarket - Services d'échange académique : livres, supports d'étude, documents, cours particuliers.{% endblock %}
+
+{% block nav_services_active %}active{% endblock %}
+
+{% block content %}
+    <!-- PAGE HERO -->
+    <section class="ve-page-hero" style="background-image:url({% static 'img/bg-img/20.jpg' %});">
+        <div class="ve-page-hero-overlay"></div>
+        <div class="container ve-page-hero-content">
+            <span class="ve-section-tag">Types de Services</span>
+            <h1>Catégories <span>d'Échange</span></h1>
+            <nav aria-label="breadcrumb"><ol class="ve-breadcrumb"><li><a href="{% url 'home' %}">Accueil</a></li><li class="active">Services</li></ol></nav>
+        </div>
+    </section>
+
+    <section class="ve-section">
+        <div class="container">
+            <div class="ve-section-header text-center">
+                <span class="ve-section-tag">Nos Services</span>
+                <h2>Catégories d'<span>Échange</span></h2>
+                <p>Découvrez tous les types de services disponibles sur UniMarket partagés par vos camarades étudiants.</p>
+            </div>
+            <div class="ve-services-grid">
+                {% comment %} Servicios predefinidos si no hay en la BD {% endcomment %}
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="100ms">
+                    <div class="ve-service-icon"><i class="fa fa-book"></i></div>
+                    <h4>Livres &amp; Supports</h4>
+                    <p>Partage et achat de livres de cours, polycopies, notes de classe et ressources.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="200ms">
+                    <div class="ve-service-icon"><i class="fa fa-file-pdf-o"></i></div>
+                    <h4>Documents Academiques</h4>
+                    <p>Resumes, TD, TP, rapports de projets et documentation complete.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="300ms">
+                    <div class="ve-service-icon"><i class="fa fa-graduation-cap"></i></div>
+                    <h4>Cours Particuliers</h4>
+                    <p>Offres de cours prives et tutorat peer-to-peer avec nos meilleurs etudiants.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="400ms">
+                    <div class="ve-service-icon"><i class="fa fa-history"></i></div>
+                    <h4>Anciens Examens</h4>
+                    <p>Examens avec corriges, questions types et tous les sujets des annees precedentes.</p>
+                    <a href="{% url 'posts' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="500ms">
+                    <div class="ve-service-icon"><i class="fa fa-wrench"></i></div>
+                    <h4>Assistance Technique</h4>
+                    <p>Aide informatique, support technique et depannage entre etudiants.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="600ms">
+                    <div class="ve-service-icon"><i class="fa fa-briefcase"></i></div>
+                    <h4>Ressources Professionnelles</h4>
+                    <p>Conseils carriere, CV, preparation aux entretiens et ressources pro.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="ve-service-card wow fadeInUp" data-wow-delay="700ms">
+                    <div class="ve-service-icon"><i class="fa fa-star"></i></div>
+                    <h4>Autres Services</h4>
+                    <p>Decouvrez d'autres types de services proposes par notre communaute.</p>
+                    <a href="{% url 'services' %}" class="ve-card-link">En savoir plus <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ve-process-section">
+        <div class="container">
+            <div class="ve-section-header text-center">
+                <span class="ve-section-tag">Comment ça Marche</span>
+                <h2>Partager ou Acheter en <span>4 Étapes</span></h2>
+            </div>
+            <div class="ve-process-grid">
+                <div class="ve-process-step wow fadeInUp" data-wow-delay="100ms"><div class="ve-process-num">01</div><h5>Créer un Compte</h5><p>Inscrivez-vous avec votre email étudiant UPC pour accéder à la plateforme complète.</p></div>
+                <div class="ve-process-arrow"><i class="fa fa-long-arrow-right"></i></div>
+                <div class="ve-process-step wow fadeInUp" data-wow-delay="250ms"><div class="ve-process-num">02</div><h5>Parcourir les Services</h5><p>Explorez les catégories, filtrez par matière, niveau, année et trouvez exactement ce qu'il vous faut.</p></div>
+                <div class="ve-process-arrow"><i class="fa fa-long-arrow-right"></i></div>
+                <div class="ve-process-step wow fadeInUp" data-wow-delay="400ms"><div class="ve-process-num">03</div><h5>Contactez le Fournisseur</h5><p>Connectez-vous directement via WhatsApp, email ou les réseaux sociaux pour négocier les détails.</p></div>
+                <div class="ve-process-arrow"><i class="fa fa-long-arrow-right"></i></div>
+                <div class="ve-process-step wow fadeInUp" data-wow-delay="550ms"><div class="ve-process-num">04</div><h5>Notez &amp; Partagez</h5><p>Après l'achat ou l'échange, notez la transaction et partagez votre avis avec la communauté.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ve-section ve-faq-section">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-12 col-lg-5 wow fadeInLeft" data-wow-delay="100ms">
+                    <span class="ve-section-tag">Questions Fréquentes</span>
+                    <h2>Vous Avez des <span>Questions?</span></h2>
+                    <p>Consultez notre FAQ ou <a href="{% url 'contact' %}" style="color:var(--ve-gold);">contactez-nous</a> et nous répondrons dans les 24 heures.</p>
+                    <a href="{% url 'contact' %}" class="ve-btn-primary mt-30">Nous Contacter</a>
+                </div>
+                <div class="col-12 col-lg-7 wow fadeInRight" data-wow-delay="200ms">
+                    <div class="ve-faq-list">
+                        <div class="ve-faq-item open"><div class="ve-faq-q"><span>Comment s'inscrire sur UniMarket?</span><i class="fa fa-plus"></i></div><div class="ve-faq-a">Cliquez sur S'inscrire, entrez votre email étudiant UPC, confirmez votre identité et activez la double authentification pour plus de sécurité.</div></div>
+                        <div class="ve-faq-item"><div class="ve-faq-q"><span>Est-ce gratuit d'utiliser UniMarket?</span><i class="fa fa-plus"></i></div><div class="ve-faq-a">Oui, l'inscription et la navigation sont totalement gratuits. Les transactions se font directement entre étudiants.</div></div>
+                        <div class="ve-faq-item"><div class="ve-faq-q"><span>Mes données personnelles sont-elles sécurisées?</span><i class="fa fa-plus"></i></div><div class="ve-faq-a">Absolument. Nous utilisons un chiffrement 256-bits et vos données ne sont jamais partagées avec des tiers sans votre consentement.</div></div>
+                        <div class="ve-faq-item"><div class="ve-faq-q"><span>Comment dois-je partager mes services?</span><i class="fa fa-plus"></i></div><div class="ve-faq-a">Créez une annonce avec photo, prix, détails, délai de disponibilité, et ajoutez vos coordonnées WhatsApp et réseaux sociaux.</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="ve-cta-banner bg-img" style="background-image:url({% static 'img/bg-img/6.jpg' %});">
+        <div class="ve-cta-overlay"></div>
+        <div class="container ve-cta-content">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-8"><h2>Prêt à Partager vos Services ou Trouver <span>ce qu'il vous Faut?</span></h2><p>Rejoignez les 1000+ étudiants qui utilisent déjà UniMarket.</p></div>
+                <div class="col-12 col-lg-4 text-lg-right"><a href="{% url 'signup' %}" class="ve-btn-white">S'inscrire Maintenant</a></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Connexion — UniMarket{% endblock %}
+{% block meta_description %}Connectez-vous sur UniMarket. Accès facile avec votre email.{% endblock %}
+
+{% block content %}
+    <!-- PAGE HERO -->
+    <section class="ve-page-hero" style="background-image:url({% static 'img/bg-img/22.jpg' %});">
+        <div class="ve-page-hero-overlay"></div>
+        <div class="container ve-page-hero-content">
+            <span class="ve-section-tag">Bienvenue</span>
+            <h1>Se <span>Connecter</span></h1>
+            <nav aria-label="breadcrumb"><ol class="ve-breadcrumb"><li><a href="{% url 'home' %}">Accueil</a></li><li class="active">Connexion</li></ol></nav>
+        </div>
+    </section>
+
+    <!-- LOGIN FORM SECTION -->
+    <section class="ve-section ve-auth-section ve-login-minimal">
+        <div class="container">
+            <div class="ve-login-form-container">
+                <div class="ve-login-form-wrap">
+                    <h2>Se <span>Connecter</span></h2>
+                    
+                    {% if error %}
+                        <div class="ve-alert ve-alert-error" style="margin-bottom: 20px; padding: 12px; background: #f44336; color: white; border-radius: 6px;">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    
+                    <form class="ve-auth-form" method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="ve-form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="votre.email@upc.edu.dz" required>
+                        </div>
+                        <div class="ve-form-group">
+                            <label>Mot de passe</label>
+                            <input type="password" name="password" placeholder="Votre mot de passe" required>
+                        </div>
+                        <button type="submit" class="ve-btn-primary ve-btn-full">Se Connecter</button>
+                    </form>
+
+                    <p class="ve-auth-footer">Pas encore inscrit? <a href="{% url 'signup' %}">Créer un compte</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .ve-login-minimal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh;
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    }
+
+    .ve-login-form-container {
+        width: 100%;
+        max-width: 520px;
+    }
+
+    .ve-login-form-wrap {
+        background: #fff;
+        border-radius: var(--ve-radius);
+        padding: 60px 50px;
+        box-shadow: 0 10px 40px rgba(61,61,61,0.12);
+        border: 1px solid var(--ve-border);
+    }
+
+    .ve-login-form-wrap h2 {
+        font-size: 36px;
+        margin-bottom: 35px;
+        color: var(--ve-dark);
+        font-weight: 900;
+        text-align: center;
+    }
+    .ve-login-form-wrap h2 span {
+        color: var(--ve-gold);
+    }
+
+    .ve-form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 24px;
+    }
+    .ve-form-group label {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ve-dark);
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .ve-form-group input {
+        padding: 14px 16px;
+        border: 2px solid var(--ve-border);
+        border-radius: 8px;
+        font-size: 15px;
+        font-family: 'DM Sans', sans-serif;
+        transition: var(--ve-trans);
+        background: #fff;
+    }
+    .ve-form-group input:focus {
+        border-color: var(--ve-gold);
+        box-shadow: 0 0 0 3px rgba(254, 200, 154, 0.1);
+        outline: none;
+    }
+
+    .ve-btn-full {
+        width: 100%;
+        margin-top: 15px;
+        padding: 16px 32px !important;
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+    }
+
+    .ve-auth-footer {
+        text-align: center;
+        font-size: 14px;
+        color: var(--ve-text);
+        margin-top: 25px;
+    }
+    .ve-auth-footer a {
+        color: var(--ve-gold);
+        font-weight: 700;
+        text-decoration: none;
+    }
+    .ve-auth-footer a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 767px) {
+        .ve-login-form-wrap { 
+            padding: 40px 30px; 
+        }
+        .ve-login-form-wrap h2 { 
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+        .ve-login-minimal { 
+            min-height: 60vh; 
+            padding: 60px 20px; 
+        }
+        .ve-login-form-container {
+            max-width: 100%;
+        }
+    }
+</style>
+{% endblock %}

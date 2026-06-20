@@ -1,0 +1,416 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Publier un Service — UniMarket{% endblock %}
+{% block meta_description %}Publier un nouveau service sur UniMarket et atteindre les étudiants de l'UPC.{% endblock %}
+
+{% block content %}
+    <section class="ve-page-hero" style="background-image:url({% static 'img/bg-img/22.jpg' %});">
+        <div class="ve-page-hero-overlay"></div>
+        <div class="container ve-page-hero-content">
+            <span class="ve-section-tag">Publier</span>
+            <h1>Nouveau <span>Service</span></h1>
+            <nav aria-label="breadcrumb"><ol class="ve-breadcrumb"><li><a href="{% url 'home' %}">Accueil</a></li><li><a href="{% url 'seller_dashboard' %}">Tableau de Bord</a></li><li class="active">Publier</li></ol></nav>
+        </div>
+    </section>
+
+    <section class="ve-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 col-lg-8">
+                            <div class="ve-form-card">
+                                <h2>Publier un service</h2>
+
+                                {% if errors %}
+                                    <div class="ve-alert ve-alert-error" style="margin-bottom: 20px;">
+                                        <ul>
+                                            {% for error in errors %}
+                                            <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+
+                                <form method="post" enctype="multipart/form-data" class="ve-form" id="listing-form">
+                                    {% csrf_token %}
+
+                                    <div class="ve-form-section">
+                                        <h3>Informations Générales</h3>
+                                        <div class="ve-form-group">
+                                            <label for="title">Titre du service *</label>
+                                            <input type="text" id="title" name="title" class="ve-form-input" maxlength="200" required
+                                                   value="{{ form_data.title|default:'' }}"
+                                                   placeholder="Ex: Cours particuliers de physique">
+                                        </div>
+
+                                        <div class="ve-form-group">
+                                            <label for="description">Description *</label>
+                                            <textarea id="description" name="description" class="ve-form-textarea" rows="7" required
+                                                      placeholder="Décrivez votre service, votre méthode et ce que vous proposez.">{{ form_data.description|default:'' }}</textarea>
+                                        </div>
+
+                                        <div class="ve-form-row">
+                                            <div class="ve-form-group">
+                                                <label for="category">Type de service *</label>
+                                                <select id="category" name="category" class="ve-form-select" required>
+                                                    <option value="">-- Sélectionner --</option>
+                                                    {% for category in categories %}
+                                                    <option value="{{ category.id }}" {% if form_data.category_id == category.id|stringformat:'s' %}selected{% endif %}>
+                                                        {{ category.name }}
+                                                    </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+
+                                            <div class="ve-form-group">
+                                                <label for="condition">État / nature du service *</label>
+                                                <select id="condition" name="condition" class="ve-form-select" required>
+                                                    <option value="">-- Sélectionner --</option>
+                                                    {% for val, label in conditions %}
+                                                    <option value="{{ val }}" {% if form_data.condition == val %}selected{% endif %}>
+                                                        {{ label }}
+                                                    </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ve-form-section">
+                                        <h3>Tarif & localisation</h3>
+                                        <div class="ve-form-row">
+                                            <div class="ve-form-group">
+                                                <label>Type de tarif *</label>
+                                                <div class="ve-toggle-select">
+                                                    <label class="ve-toggle-item">
+                                                        <input type="radio" name="price_status" value="paid" {% if form_data.price_status == 'paid' or form_data.price %}checked{% endif %}>
+                                                        <span>Payant</span>
+                                                    </label>
+                                                    <label class="ve-toggle-item">
+                                                        <input type="radio" name="price_status" value="free" {% if form_data.price_status == 'free' or not form_data.price %}checked{% endif %}>
+                                                        <span>Gratuit</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="ve-form-group price-field" style="display: {% if form_data.price %}block{% else %}none{% endif %};">
+                                                <label for="price">Prix ($)</label>
+                                                <input type="number" id="price" name="price" class="ve-form-input" step="0.01" min="0"
+                                                       value="{{ form_data.price|default:'' }}"
+                                                       placeholder="Entrez le prix du service">
+                                                <small>Ce champ s'affiche uniquement pour les services payants.</small>
+                                            </div>
+
+                                            <div class="ve-form-group">
+                                                <label for="location">Localisation *</label>
+                                                <input type="text" id="location" name="location" class="ve-form-input" maxlength="200" required
+                                                       value="{{ form_data.location|default:'' }}"
+                                                       placeholder="Ex: Campus, Bibliothèque">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ve-form-section">
+                                        <h3>Contact</h3>
+                                        <div class="ve-form-group">
+                                            <label for="whatsapp_number">Numéro WhatsApp</label>
+                                            <input type="text" id="whatsapp_number" name="whatsapp_number" class="ve-form-input" maxlength="20"
+                                                   value="{{ form_data.whatsapp_number|default:'' }}"
+                                                   placeholder="Ex: +213671234567">
+                                            <small>Ajoutez un numéro pour permettre la prise de contact directe via WhatsApp.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="ve-form-section">
+                                        <h3>Images</h3>
+                                        <div class="ve-form-group">
+                                            <label>Images du service (1 principale + galérie)</label>
+                                            <div class="image-drop" id="image-drop">
+                                                <input type="file" id="images" name="images" accept="image/*" multiple class="ve-form-file" />
+                                                <div class="image-drop-hint">Glissez-déposez vos images ici ou cliquez pour sélectionner</div>
+                                            </div>
+                                            <small>Formats JPEG, PNG ou WebP. Max {{ max_image_size_mb }}MB par image.</small>
+                                            <div class="thumbs-grid mt-3" id="thumbs"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ve-form-actions">
+                                        <button type="submit" class="ve-btn-primary ve-btn-lg">
+                                            <i class="fa-solid fa-paper-plane"></i> Publier le service
+                                        </button>
+                                        <a href="{% url 'seller_dashboard' %}" class="ve-btn-secondary ve-btn-lg">
+                                            <i class="fa-solid fa-arrow-left"></i> Annuler
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-4">
+                            <aside class="ve-sidebar ve-sticky">
+                                <div class="ve-aa-box">
+                                    <h4><i class="fa fa-lightbulb"></i> Conseils rapides</h4>
+                                    <ul class="ve-aa-list">
+                                        <li><i class="fa fa-check-circle"></i> Titre clair et précis</li>
+                                        <li><i class="fa fa-check-circle"></i> Description détaillée (format, durée, lieu)</li>
+                                        <li><i class="fa fa-check-circle"></i> Ajoutez une photo principale nette</li>
+                                        <li><i class="fa fa-check-circle"></i> Répondez rapidement aux messages</li>
+                                    </ul>
+                                </div>
+
+                                <div class="ve-aa-box mt-3">
+                                    <h4><i class="fa fa-image"></i> Aperçu des images</h4>
+                                    <div id="preview-panel" class="preview-panel">
+                                        <p class="muted">Aucune image sélectionnée</p>
+                                    </div>
+                                </div>
+
+                                <div class="ve-aa-box mt-3">
+                                    <h4><i class="fa fa-info-circle"></i> Rappels</h4>
+                                    <p class="small">Respectez les règles de la communauté et évitez les contenus protégés par droits d'auteur.</p>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .ve-form-card {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 2px 20px rgba(61,61,61,0.08);
+    }
+
+    .ve-form-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+
+    .ve-form-select,
+    .ve-form-input,
+    .ve-form-textarea,
+    .ve-form-file {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 14px;
+        transition: border-color .2s ease;
+    }
+
+    .ve-form-input:focus,
+    .ve-form-select:focus,
+    .ve-form-textarea:focus,
+    .ve-form-file:focus {
+        outline: none;
+        border-color: #fec89a;
+        box-shadow: 0 0 0 3px rgba(254,200,154,0.15);
+    }
+
+    .ve-form-actions {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+
+    .ve-toggle-select {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .ve-toggle-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--ve-border);
+        border-radius: 12px;
+        padding: 14px 16px;
+        background: #f8f7f3;
+        cursor: pointer;
+        transition: var(--ve-trans);
+    }
+
+    .ve-toggle-item input {
+        display: none;
+    }
+
+    .ve-toggle-item span {
+        font-weight: 700;
+        color: var(--ve-dark);
+    }
+
+    .ve-toggle-item:hover,
+    .ve-toggle-item input:checked + span {
+        border-color: var(--ve-gold);
+        background: #fff;
+    }
+
+    .price-field small {
+        display: block;
+        margin-top: 8px;
+        font-size: 13px;
+        color: var(--ve-text);
+    }
+
+    .ve-alert ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    /* Image dropzone & thumbs */
+    .image-drop {
+        border: 2px dashed #eee;
+        border-radius: 10px;
+        padding: 22px;
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        background: linear-gradient(180deg, #fff 0%, #fcfcfc 100%);
+    }
+
+    .image-drop.dragover {
+        border-color: var(--ve-gold);
+        box-shadow: 0 4px 18px rgba(254,200,154,0.18);
+        background: #fffaf2;
+    }
+
+    .image-drop input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .image-drop-hint {
+        color: var(--ve-text);
+        font-weight: 700;
+    }
+
+    .thumbs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 10px;
+    }
+
+    .thumb {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #e6e6e6;
+        background: #fff;
+    }
+
+    .thumb img { width: 100%; height: 90px; object-fit: cover; display:block; }
+
+    .thumb .remove {
+        position: absolute;
+        top: 6px; right: 6px;
+        background: rgba(0,0,0,0.6);
+        color: white; border-radius: 50%; width: 26px; height: 26px; display:flex; align-items:center; justify-content:center; cursor:pointer;
+    }
+
+    .ve-sticky { position: sticky; top: 90px; }
+
+    .preview-panel { min-height: 120px; display:flex; align-items:center; justify-content:center; border: 1px dashed #eee; border-radius:8px; padding:10px; }
+
+    .muted { color: #777; }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const paidInputs = document.querySelectorAll('input[name="price_status"]');
+        const priceField = document.querySelector('.price-field');
+
+        function updatePriceField() {
+            const paidSelected = document.querySelector('input[name="price_status"][value="paid"]');
+            if (paidSelected && paidSelected.checked) {
+                priceField.style.display = 'block';
+            } else {
+                priceField.style.display = 'none';
+                const priceInput = document.getElementById('price');
+                if (priceInput) {
+                    priceInput.value = '';
+                }
+            }
+        }
+
+        paidInputs.forEach(input => {
+            input.addEventListener('change', updatePriceField);
+        });
+
+        updatePriceField();
+    });
+</script>
+<script>
+    (function() {
+        const drop = document.getElementById('image-drop');
+        const input = document.getElementById('images');
+        const thumbs = document.getElementById('thumbs');
+        const previewPanel = document.getElementById('preview-panel');
+
+        if (!drop || !input) return;
+
+        function prevent(e){ e.preventDefault(); e.stopPropagation(); }
+
+        ['dragenter','dragover'].forEach(evt => {
+            drop.addEventListener(evt, function(e){ prevent(e); drop.classList.add('dragover'); });
+        });
+        ['dragleave','drop'].forEach(evt => {
+            drop.addEventListener(evt, function(e){ prevent(e); drop.classList.remove('dragover'); });
+        });
+
+        drop.addEventListener('drop', function(e){
+            const dt = e.dataTransfer; if (!dt) return;
+            const files = Array.from(dt.files).filter(f => f.type.startsWith('image/'));
+            if (files.length) handleFiles(files);
+        });
+
+        input.addEventListener('change', function(e){
+            const files = Array.from(input.files).filter(f => f.type.startsWith('image/'));
+            if (files.length) handleFiles(files);
+        });
+
+        function handleFiles(files){
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(evt){
+                    const url = evt.target.result;
+                    const div = document.createElement('div'); div.className = 'thumb';
+                    const img = document.createElement('img'); img.src = url; img.alt = file.name;
+                    const rem = document.createElement('div'); rem.className = 'remove'; rem.innerHTML = '&times;';
+                    rem.addEventListener('click', () => { div.remove(); updatePreviewPanel(); });
+                    div.appendChild(img); div.appendChild(rem); thumbs.appendChild(div);
+                    updatePreviewPanel();
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function updatePreviewPanel(){
+            const imgs = thumbs.querySelectorAll('img');
+            previewPanel.innerHTML = '';
+            if (!imgs.length) {
+                const p = document.createElement('p'); p.className = 'muted'; p.textContent = 'Aucune image sélectionnée'; previewPanel.appendChild(p); return;
+            }
+            const wrap = document.createElement('div'); wrap.style.display='grid'; wrap.style.gridTemplateColumns='repeat(2,1fr)'; wrap.style.gap='8px';
+            imgs.forEach((im, idx) => { const c = document.createElement('img'); c.src = im.src; c.style.width='100%'; c.style.height='80px'; c.style.objectFit='cover'; c.style.borderRadius='6px'; wrap.appendChild(c); });
+            previewPanel.appendChild(wrap);
+        }
+    })();
+</script>
+{% endblock %}

@@ -1,0 +1,364 @@
+{% load static avatar_tags %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{% block meta_description %}UniMarket - Marché interne des étudiants de l'UPC. Échange de services académiques et ressources d'études{% endblock %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{% block title %}UniMarket - Marché des Étudiants UPC{% endblock %}</title>
+
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom-override.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+    <style>
+        .ve-flash-messages {
+            position: relative;
+            z-index: 100;
+            padding: 15px 0;
+            background: #f8f9fa;
+        }
+        .ve-flash-messages .ve-alert {
+            margin-bottom: 10px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .ve-flash-messages .ve-alert-ve-alert-success,
+        .ve-flash-messages .ve-alert-success {
+            background: #d4edda;
+            color: #145214;
+            border: 1px solid #c3e6cb;
+        }
+        .ve-flash-messages .ve-alert-error,
+        .ve-flash-messages .ve-alert-danger {
+            background: #f8d7da;
+            color: #842029;
+            border: 1px solid #f5c2c7;
+        }
+        .ve-flash-messages .ve-alert-warning {
+            background: #fff3cd;
+            color: #664d03;
+            border: 1px solid #ffecb5;
+        }
+        .ve-flash-messages .ve-alert-info {
+            background: #cff4fc;
+            color: #055160;
+            border: 1px solid #b6effb;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    </div>
+
+    <!-- Flash Messages -->
+    {% if messages %}
+    <div class="ve-flash-messages">
+        <div class="container">
+            {% for message in messages %}
+            <div class="ve-alert {% if message.tags %}ve-alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- ===== NAVBAR (single dark bar, logo left, nav center, CTA right) ===== -->
+    <header class="ve-header" id="ve-sticky">
+        <div class="container-fluid ve-nav-wrap">
+            <!-- Logo -->
+            <div class="ve-logo">
+                <a href="{% url 'home' %}">
+                    <span class="ve-logo-icon">U</span>
+                    <span class="ve-logo-text">Uni<strong>Market</strong></span>
+                </a>
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="ve-nav">
+                <ul>
+                    <li><a href="{% url 'home' %}" class="{% block nav_home_active %}{% endblock %}">Accueil</a></li>
+                    <li><a href="{% url 'about' %}">À propos</a></li>
+                    <li><a href="{% url 'services' %}" class="{% block nav_services_active %}{% endblock %}">Services</a></li>
+                    <li class="has-drop">
+                        <a href="{% url 'posts' %}" class="{% block nav_market_active %}{% endblock %}">Market <i class="fa fa-angle-down"></i></a>
+                        <ul class="ve-dropdown">
+                            {% for category in categories %}
+                            <li><a href="{% url 'posts' %}?category={{ category.slug }}">{{ category.name }}</a></li>
+                            {% endfor %}
+                            {% if categories %}
+                            <li><hr style="margin: 5px 0; opacity: 0.2;"></li>
+                            {% endif %}
+                            <li><a href="{% url 'posts' %}"><strong>Tous les services</strong></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'seller_listing_create' %}">Ajouter un Service</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'seller_dashboard' %}">dashboard</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <!-- Search Button -->
+            <div class="ve-nav-search">
+                <form class="ve-search-form" method="GET" action="{% url 'search' %}">
+                    <input type="text" placeholder="Rechercher documents..." class="ve-search-input" name="q">
+                    <button type="submit" class="ve-search-btn"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
+            <!-- CTA -->
+            <div class="ve-nav-cta">
+                {% if user.is_authenticated %}
+                    <!-- User Profile Dropdown -->
+                    <div class="ve-user-dropdown has-drop">
+                        <button class="ve-user-btn">
+                            {% if user.profile.profile_picture %}
+                                <img src="{{ user.profile.profile_picture.url }}" alt="{{ user.get_full_name }}" class="ve-user-avatar">
+                            {% else %}
+                                <div class="ve-user-avatar-placeholder">{{ user.get_full_name|default:user.username|initial }}</div>
+                            {% endif %}
+                            <span class="ve-user-name">{{ user.first_name|default:"Profil" }}</span>
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="ve-dropdown ve-profile-dropdown">
+                            <li class="ve-dropdown-header">
+                                {% if user.profile.profile_picture %}
+                                    <img src="{{ user.profile.profile_picture.url }}" alt="{{ user.get_full_name }}" class="ve-dropdown-avatar">
+                                {% else %}
+                                    <div class="ve-dropdown-avatar-placeholder">{{ user.get_full_name|default:user.username|initial }}</div>
+                                {% endif %}
+                                <div class="ve-dropdown-user-info">
+                                    <strong>{{ user.get_full_name }}</strong>
+                                    <p>{{ user.profile.university }}</p>
+                                </div>
+                            </li>
+                            <li><a href="{% url 'profile' %}"><i class="fa fa-user-circle"></i> Mon Profil</a></li>
+                            <li><a href="{% url 'seller_listing_create' %}"><i class="fa fa-upload"></i> Créer une annonce</a></li>
+                            <li><hr style="margin: 8px 0; opacity: 0.2;"></li>
+                            <li><a href="#"><i class="fa fa-heart"></i> Mes Favoris</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> Messages</a></li>
+                            <li><a href="#"><i class="fa fa-cog"></i> Paramètres</a></li>
+                            <li><hr style="margin: 8px 0; opacity: 0.2;"></li>
+                            <li><a href="#" onclick="logout()"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <a href="{% url 'login' %}" class="ve-cta-btn ve-cta-btn-secondary" style="background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); padding: 8px 16px; font-size: 14px;">Connexion <i class="fa fa-sign-in"></i></a>
+                        <a href="{% url 'signup' %}" class="ve-cta-btn">S'inscrire <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="ve-toggler" id="ve-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="ve-mobile-menu" id="ve-mobile-menu">
+            <ul>
+                <li><a href="{% url 'home' %}">Accueil</a></li>
+                <li><a href="{% url 'about' %}">À propos</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li>
+                    <a href="{% url 'posts' %}" style="font-weight: 600; display: flex; align-items: center; justify-content: space-between;">
+                        <span>Market</span>
+                        <i class="fa fa-chevron-right" style="font-size: 12px;"></i>
+                    </a>
+                    <ul style="display: none; list-style: none; padding-left: 20px; margin: 5px 0; border-left: 2px solid var(--ve-gold);">
+                        {% for category in categories %}
+                        <li><a href="{% url 'posts' %}?category={{ category.slug }}" style="padding: 8px 0;">{{ category.name }}</a></li>
+                        {% endfor %}
+                        <li><a href="{% url 'posts' %}" style="padding: 8px 0; font-weight: 600;"><i class="fa fa-check"></i> Tous les services</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'seller_listing_create' %}" style="font-weight: 600; color: var(--ve-gold);"><i class="fa fa-plus-circle"></i> Ajouter un Service</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li class="ve-mobile-auth-divider"></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'seller_dashboard' %}"><i class="fa fa-tachometer"></i> dashboard</a></li>
+                    <li><a href="{% url 'profile' %}"><i class="fa fa-user-circle"></i> Mon Profil</a></li>
+                    <li><a href="{% url 'seller_listing_create' %}"><i class="fa fa-upload"></i> Créer une annonce</a></li>
+                    <li><a href="#" onclick="logout()"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" class="ve-mobile-auth-link ve-mobile-auth-signup"><i class="fa fa-sign-in"></i> <strong>Se Connecter</strong></a></li>
+                    <li><a href="{% url 'signup' %}" class="ve-mobile-auth-link ve-mobile-auth-signup"><i class="fa fa-user-plus"></i> S'inscrire</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT BLOCK ===== -->
+    {% block content %}
+    <!-- Contenu principal sera inséré ici par les templates enfants -->
+    {% endblock %}
+
+    <!-- ===== FOOTER (dark, 4-column) ===== -->
+    <footer class="ve-footer">
+        <div class="container">
+            <div class="row">
+                <!-- Col 1: Brand -->
+                <div class="col-12 col-sm-6 col-lg-4 mb-50">
+                    <div class="ve-footer-brand">
+                        <a href="{% url 'home' %}" class="ve-footer-logo">
+                            <span class="ve-logo-icon">U</span>
+                            <span class="ve-logo-text">Uni<strong>Market</strong></span>
+                        </a>
+                        <p>Le marché interne des étudiants de l'UPC - Échange de services académiques.</p>
+                        <div class="ve-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Col 2: Quick Links -->
+                <div class="col-12 col-sm-6 col-lg-2 mb-50">
+                    <h5 class="ve-footer-title">Accès Rapide</h5>
+                    <ul class="ve-footer-links">
+                        <li><a href="{% url 'home' %}">Accueil</a></li>
+                        <li><a href="{% url 'about' %}">À propos</a></li>
+                        <li><a href="{% url 'services' %}">Services</a></li>
+                        <li><a href="{% url 'posts' %}">BATs</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Col 3: Services -->
+                <div class="col-12 col-sm-6 col-lg-3 mb-50">
+                    <h5 class="ve-footer-title">Nos Services</h5>
+                    <ul class="ve-footer-links">
+                        <li><a href="#">Livres &amp; Supports</a></li>
+                        <li><a href="#">Documents Académiques</a></li>
+                        <li><a href="#">Cours Particuliers</a></li>
+                        <li><a href="#">Anciens Examens</a></li>
+                        <li><a href="#">Ressources Pro</a></li>
+                    </ul>
+                </div>
+                <!-- Col 4: Contact -->
+                <div class="col-12 col-sm-6 col-lg-3 mb-50">
+                    <h5 class="ve-footer-title">Contactez-Nous</h5>
+                    <ul class="ve-footer-contact">
+                        <li><i class="fa fa-globe"></i> Plateforme en Ligne</li>
+                        <li><i class="fa fa-envelope"></i> support@unimarket.com</li>
+                        <li><i class="fa fa-phone"></i> +243 823 949 767</li>
+                        <li><i class="fa fa-clock-o"></i> 24h/24 En Ligne</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter Section -->
+        <section class="ve-newsletter-section">
+            <div class="container">
+                <div class="ve-newsletter-wrap">
+                    <div class="ve-nl-left">
+                        <i class="fa fa-bell-o"></i>
+                        <div>
+                            <h3>Restez Connectés</h3>
+                            <p>Recevez les nouvelles publications et mises à jour d'UniMarket chaque jour.</p>
+                        </div>
+                    </div>
+                    <div class="ve-nl-right">
+                        <form class="ve-nl-form" method="POST" action="{% url 'newsletter_subscribe' %}">
+                            {% csrf_token %}
+                            <div style="display: flex; gap: 10px;">
+                                <input type="email" placeholder="Votre adresse email" name="email" required style="flex: 1;">
+                                <input type="text" placeholder="Votre nom (optionnel)" name="name" style="flex: 0.5;">
+                                <button type="submit" style="background: #fec89a; border: none; padding: 12px 25px; cursor: pointer; font-weight: bold;">S'abonner</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Bottom Bar -->
+        <div class="ve-footer-bottom">
+            <div class="container">
+                <div class="ve-footer-bottom-inner">
+                    <p>Copyright &copy; <span id="year"></span> UniMarket - Pour les Étudiants de l'UPC. Tous droits réservés.</p>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugins/plugins.js' %}"></script>
+    <script src="{% static 'js/active.js' %}"></script>
+    <script src="{% static 'js/vaultedge.js' %}"></script>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // User dropdown toggle
+        document.querySelectorAll('.ve-user-dropdown.has-drop').forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', function() {
+                const menu = this.querySelector('.ve-profile-dropdown');
+                if (menu) {
+                    menu.style.opacity = '1';
+                    menu.style.visibility = 'visible';
+                    menu.style.transform = 'translateY(0)';
+                }
+            });
+            
+            dropdown.addEventListener('mouseleave', function() {
+                const menu = this.querySelector('.ve-profile-dropdown');
+                if (menu) {
+                    menu.style.opacity = '0';
+                    menu.style.visibility = 'hidden';
+                    menu.style.transform = 'translateY(10px)';
+                }
+            });
+        });
+        
+        // Logout function
+        function logout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter?')) {
+                // Create a form and submit it to logout
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '{% url "logout" %}';
+                
+                // Add CSRF token
+                const csrfInput = document.createElement('input');
+                csrfInput.type = 'hidden';
+                csrfInput.name = 'csrfmiddlewaretoken';
+                csrfInput.value = document.querySelector('[name=csrfmiddlewaretoken]')?.value || 
+                                  document.cookie.split('; ').find(row => row.startsWith('csrftoken='))?.split('=')[1] || '';
+                
+                form.appendChild(csrfInput);
+                document.body.appendChild(form);
+                form.submit();
+            }
+            return false;
+        }
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

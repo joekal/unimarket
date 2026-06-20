@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}À Propos — UniMarket{% endblock %}
+{% block meta_description %}Découvrez UniMarket - notre mission pour créer un marché interne des étudiants UPC.{% endblock %}
+
+{% block content %}
+    <!-- PAGE HERO -->
+    <section class="ve-page-hero" style="background-image:url({% static 'img/bg-img/13.jpg' %});">
+        <div class="ve-page-hero-overlay"></div>
+        <div class="container ve-page-hero-content">
+            <span class="ve-section-tag">Notre Histoire</span>
+            <h1>UniMarket — Par &amp; Pour les <span>Étudiants</span></h1>
+            <nav aria-label="breadcrumb">
+                <ol class="ve-breadcrumb">
+                    <li><a href="{% url 'home' %}">Accueil</a></li>
+                    <li class="active">À Propos</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- ABOUT SPLIT -->
+    <section class="ve-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6 wow fadeInLeft" data-wow-delay="100ms">
+                    <div class="ve-about-img-stack">
+                        <div class="ve-about-img-1 bg-img" style="background-image:url({% static 'img/bg-img/14.jpg' %});"></div>
+                        <div class="ve-about-img-2 bg-img" style="background-image:url({% static 'img/bg-img/5.jpg' %});"></div>
+                        <div class="ve-about-ribbon"><strong>2026</strong><span>UPC</span></div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 wow fadeInRight" data-wow-delay="200ms">
+                    <div class="ve-about-text">
+                        <span class="ve-section-tag">Notre Histoire</span>
+                        <h2>Un Marche cree par et pour les <span>Etudiants</span></h2>
+                        <p class="ve-lead">UniMarket est une plateforme d'echange creee pour faciliter le partage de services academiques entre les etudiants de l'Universite Populaire de Casablanca (UPC).</p>
+                        <p>Fondee en 2024, UniMarket part d'un constat simple : les etudiants ont besoin d'acces facile a des ressources d'apprentissage, des cours, des anciens examens et des services d'entraides. Aujourd'hui, plus de 1000 etudiants utilisent la plateforme pour partager et trouver ce dont ils ont besoin.</p>
+                        <div class="ve-about-features">
+                            <div class="ve-af-item"><i class="fa fa-check"></i><span>Plateforme 100% Gratuite</span></div>
+                            <div class="ve-af-item"><i class="fa fa-check"></i><span>Double Authentification Securisee</span></div>
+                            <div class="ve-af-item"><i class="fa fa-check"></i><span>Communaute Verifiee d'Etudiants</span></div>
+                            <div class="ve-af-item"><i class="fa fa-check"></i><span>Systeme de Notation Transparent</span></div>
+                        </div>
+                        <a href="{% url 'services' %}" class="ve-btn-primary mt-30">Explore Nos Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION / VISION / VALUES -->
+    <section class="ve-mvv-section">
+        <div class="container">
+            <div class="ve-section-header text-center">
+                <span class="ve-section-tag">Nos Principes</span>
+                <h2>Mission, Vision &amp; <span>Valeurs</span></h2>
+            </div>
+            <div class="ve-mvv-grid">
+                <div class="ve-mvv-card wow fadeInUp" data-wow-delay="100ms">
+                    <div class="ve-mvv-icon"><i class="fa fa-bullseye"></i></div>
+                    <h4>Notre Mission</h4>
+                    <p>Creer une plateforme accessible et securisee ou les etudiants de l'UPC peuvent partager, echanger et acheter des services academiques de qualite de maniere fiable.</p>
+                </div>
+                <div class="ve-mvv-card wow fadeInUp" data-wow-delay="250ms">
+                    <div class="ve-mvv-icon"><i class="fa fa-eye"></i></div>
+                    <h4>Notre Vision</h4>
+                    <p>Etre le marche de reference pour l'entraide academique, renforçant la communaute etudiante UPC par le partage transparent et equitable des ressources.</p>
+                </div>
+                <div class="ve-mvv-card wow fadeInUp" data-wow-delay="400ms">
+                    <div class="ve-mvv-icon"><i class="fa fa-heart"></i></div>
+                    <h4>Nos Valeurs</h4>
+                    <p>Entraide, integrite, transparence, securite, equite et engagement envers la reussite collective de nos etudiants.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="ve-section ve-team-section">
+        <div class="container">
+            <div class="ve-section-header text-center">
+                <span class="ve-section-tag">Notre Equipe</span>
+                <h2>Etudiants les Plus <span>Actifs</span></h2>
+                <p>Voici nos contributeurs premium notes 4.8+ qui participent activement a la plateforme.</p>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                    <div class="ve-team-card">
+                        <div class="ve-team-img bg-img" style="background-image:url({% static 'img/bg-img/15.jpg' %});"></div>
+                        <div class="ve-team-info">
+                            <h5>Divine M.</h5><span>L3 - FASE ⭐ 4.9</span>
+                            <div class="ve-team-social"><a href="#"><i class="fa fa-whatsapp"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
+                    <div class="ve-team-card">
+                        <div class="ve-team-img bg-img" style="background-image:url({% static 'img/bg-img/16.jpg' %});"></div>
+                        <div class="ve-team-info">
+                            <h5>Abigaelle N.</h5><span>L3 - FASE ⭐ 4.8</span>
+                            <div class="ve-team-social"><a href="#"><i class="fa fa-whatsapp"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="ve-team-card">
+                        <div class="ve-team-img bg-img" style="background-image:url({% static 'img/bg-img/17.jpg' %});"></div>
+                        <div class="ve-team-info">
+                            <h5>Zabdiel T.</h5><span>L3 - FASE ⭐ 4.7</span>
+                            <div class="ve-team-social"><a href="#"><i class="fa fa-whatsapp"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
