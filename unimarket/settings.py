@@ -25,7 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8mw)+13pt!$7hpr27!d56i-u2gtd3j+=+jwe^olv*1z@6iixhw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+env = environ.Env(
+    # Définir des valeurs par défaut si nécessaire (optionnel)
+    DEBUG=(bool, False)
+)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,7 +88,7 @@ WSGI_APPLICATION = 'unimarket.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE_URL'))
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 
 # ============================================
