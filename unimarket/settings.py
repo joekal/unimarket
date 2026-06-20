@@ -177,19 +177,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 # ============================================
-# CONFIGURATION DES FICHIERS STATIQUES
+# CONFIGURATION DES FICHIERS STATIQUES (PRODUCTION)
 # ============================================
 
-# 1. URL d'accès aux fichiers
+# 1. URL publique d'accès
 STATIC_URL = '/static/'
 
-# 2. Dossier absolu où Render va rassembler les fichiers (Obligatoire pour collectstatic)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# 2. Dossier final absolu requis par Render (Résout l'erreur STATIC_ROOT manquant)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# 3. Supprimer ou vider STATICFILES_DIRS car vos fichiers sont déjà dans l'application
+# 3. Forcer une liste vide pour supprimer le warning staticfiles.W004
+# Cela évite que Django cherche un dossier "static" inexistant à la racine
 STATICFILES_DIRS = []
 
-# 4. Configuration de WhiteNoise pour Django 4.2
+# 4. Paramétrage des moteurs de stockage pour Django 4.2+ et WhiteNoise
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -200,10 +201,11 @@ STORAGES = {
 }
 
 # ============================================
-# CONFIGURATION DES MÉDIAS (FICHIERS UPLOADÉS)
+# CONFIGURATION DES FICHIERS MÉDIAS
 # ============================================
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Validación de extensiones permitidas
 ALLOWED_FILE_EXTENSIONS = ['pdf', 'docx', 'xlsx', 'pptx', 'jpg', 'jpeg', 'png', 'gif', 'zip', 'txt']
