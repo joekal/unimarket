@@ -5,7 +5,7 @@
 {% block meta_description %}{{ post.description|truncatewords:30 }}{% endblock %}
 
 {% block content %}
-    <section class="ve-page-hero ve-page-hero-sm" style="background-image:url({% if post.image %}{{ post.image.url }}{% else %}{% static 'img/bg-img/22.jpg' %}{% endif %});">
+    <section class="ve-page-hero ve-page-hero-sm" style="background-image:url({{ post.image|media_or_default:'/static/img/bg-img/22.jpg' }});">
         <div class="ve-page-hero-overlay"></div>
         <div class="container ve-page-hero-content">
             <span class="ve-insight-cat" style="margin-bottom:16px;">{{ post.category.name }}</span>
@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <article class="ve-article">
-                        <div class="ve-article-featured bg-img" style="background-image:url({% if post.image %}{{ post.image.url }}{% else %}{% static 'img/bg-img/22.jpg' %}{% endif %});"></div>
+                        <div class="ve-article-featured bg-img" style="background-image:url({{ post.image|media_or_default:'/static/img/bg-img/22.jpg' }});"></div>
                         <div class="ve-article-body">
                             <h3>Informations sur ce service</h3>
                             <ul class="ve-article-info-list">

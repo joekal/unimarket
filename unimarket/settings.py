@@ -204,7 +204,16 @@ STORAGES = {
 # CONFIGURATION DES FICHIERS MÉDIAS
 # ============================================
 MEDIA_URL = env('MEDIA_URL', default='/media/')
-MEDIA_ROOT = env('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'media'))
+
+DEFAULT_MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if os.environ.get('RENDER'):
+    render_data_root = '/var/lib/render/project/data'
+    if os.path.exists(render_data_root) or os.access(os.path.dirname(render_data_root), os.W_OK):
+        DEFAULT_MEDIA_ROOT = os.path.join(render_data_root, 'media')
+    else:
+        DEFAULT_MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_ROOT = env('MEDIA_ROOT', default=DEFAULT_MEDIA_ROOT)
 
 # Créer le dossier de médias si nécessaire (utile en production sur Render)
 os.makedirs(MEDIA_ROOT, exist_ok=True)

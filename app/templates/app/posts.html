@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static avatar_tags %}
 
 {% block title %}{{ page_title }}{% endblock %}
 {% block meta_description %}Découvrez tous les services et documents disponibles sur UniMarket. Filtrez par catégorie et trouvez ce dont vous avez besoin.{% endblock %}
@@ -44,7 +44,7 @@
                         {% for post in posts %}
                         <div class="col-12 col-md-6 wow fadeInUp" data-wow-delay="100ms">
                             <div class="ve-insight-card">
-                                <div class="ve-insight-img bg-img" style="background-image:url({% if post.image %}{{ post.image.url }}{% else %}{% static 'img/bg-img/10.jpg' %}{% endif %});"></div>
+                                <div class="ve-insight-img bg-img" style="background-image:url({{ post.image|media_or_default:'/static/img/bg-img/10.jpg' }});"></div>
                                 <div class="ve-insight-body">
                                     <span class="ve-insight-cat">{{ post.category.name }}</span>
                                     <h5><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h5>
@@ -141,7 +141,7 @@
                         <h5 class="ve-sidebar-title">Posts récents</h5>
                         {% for recent in recent_posts %}
                         <div class="ve-recent-post">
-                            <div class="ve-rp-img bg-img" style="background-image:url({% if recent.image %}{{ recent.image.url }}{% else %}{% static 'img/bg-img/10.jpg' %}{% endif %});"></div>
+                            <div class="ve-rp-img bg-img" style="background-image:url({{ recent.image|media_or_default:'/static/img/bg-img/10.jpg' }});"></div>
                             <div>
                                 <a href="{% url 'post_detail' recent.slug %}">{{ recent.title|truncatechars:40 }}</a>
                                 <span><i class="fa fa-user"></i> {{ recent.seller.user.get_full_name }}</span>

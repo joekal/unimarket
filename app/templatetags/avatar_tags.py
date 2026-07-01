@@ -43,3 +43,21 @@ def initial(value):
         return first.upper()
     except Exception:
         return name[0].upper()
+
+
+@register.filter
+def media_or_default(image_field, default_url='/static/img/bg-img/10.jpg'):
+    """Return the image URL, or a safe fallback URL when the file is missing."""
+    if not image_field:
+        return default_url
+
+    try:
+        if hasattr(image_field, 'storage') and hasattr(image_field, 'name') and image_field.name:
+            if image_field.storage.exists(image_field.name):
+                return image_field.url
+        if hasattr(image_field, 'url'):
+            return image_field.url
+    except Exception:
+        pass
+
+    return default_url
