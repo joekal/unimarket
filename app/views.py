@@ -32,6 +32,7 @@ from urllib.parse import urlparse
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 import os
 
 logger = logging.getLogger(__name__)
@@ -1742,8 +1743,24 @@ def create_listing(request):
         return render(request, 'app/seller_listing_create.html', context)
 
     slug = generate_unique_slug(Listing, title)
+
+    def save_uploaded_image(uploaded_file):
+        if not uploaded_file:
+            return None
+        try:
+            saved_name = default_storage.save(f"listings/{uploaded_file.name}", uploaded_file)
+            return saved_name
+        except Exception as exc:
+            logger.error(f"Erreur lors de l'enregistrement du fichier média: {exc}")
+            return None
+
     # create listing with first image as main
-    first_image = images[0] if images else None
+    first_image = None
+    if images:
+        first_image_name = save_uploaded_image(images[0])
+        if first_image_name:
+            first_image = first_image_name
+
     listing = Listing.objects.create(
         seller=profile,
         title=title,
@@ -1762,7 +1779,9 @@ def create_listing(request):
     # Save gallery images (remaining images)
     try:
         for order_idx, img in enumerate(images[1:], start=1):
-            ListingImage.objects.create(listing=listing, image=img, order=order_idx)
+            saved_name = save_uploaded_image(img)
+            if saved_name:
+                ListingImage.objects.create(listing=listing, image=saved_name, order=order_idx)
     except Exception as e:
         logger.error(f"Erreur lors de la sauvegarde des images de la galerie: {str(e)}")
 
@@ -1796,7 +1815,10 @@ def seller_listing_edit(request, slug):
                     logger.warning(f"Catégorie invalide lors de la modification de listing : {category_id}")
 
             if 'image' in request.FILES:
-                listing.image = request.FILES['image']
+                uploaded_image = request.FILES['image']
+                saved_name = save_uploaded_image(uploaded_image)
+                if saved_name:
+                    listing.image = saved_name
             
             listing.save()
             logger.info(f"✓ Post modifié: {listing.title}")
