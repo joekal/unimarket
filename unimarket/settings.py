@@ -203,9 +203,11 @@ STORAGES = {
 # ============================================
 # CONFIGURATION DES FICHIERS MÉDIAS
 # ============================================
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = env('MEDIA_URL', default='/media/')
+MEDIA_ROOT = env('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'media'))
 
+# Créer le dossier de médias si nécessaire (utile en production sur Render)
+os.makedirs(MEDIA_ROOT, exist_ok=True)
 
 # Validación de extensiones permitidas
 ALLOWED_FILE_EXTENSIONS = ['pdf', 'docx', 'xlsx', 'pptx', 'jpg', 'jpeg', 'png', 'gif', 'zip', 'txt']
