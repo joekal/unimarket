@@ -46,7 +46,7 @@ def initial(value):
 
 
 @register.filter
-def media_or_default(image_field, default_url='/static/img/bg-img/10.jpg'):
+def media_or_default(image_field, default_url='/static/img/bg-img/20.jpg'):
     """Return the image URL, or a safe fallback URL when the file is missing."""
     if not image_field:
         return default_url

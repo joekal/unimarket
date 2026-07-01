@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static avatar_tags %}
 
 {% block title %}{% if search_query %}Résultats: {{ search_query }} — UniMarket{% else %}Recherche — UniMarket{% endif %}{% endblock %}
 {% block meta_description %}Recherchez des documents, des services et des ressources sur UniMarket.{% endblock %}
@@ -93,7 +93,7 @@
                                 {% for listing in results.listings %}
                                 <div class="ve-result-card ve-result-listing">
                                     <div class="ve-result-image">
-                                        <img src="{{ listing.image.url }}" alt="{{ listing.title }}">
+                                        <img src="{{ listing.image|media_or_default:'/static/img/bg-img/20.jpg' }}" alt="{{ listing.title }}">
                                         <span class="ve-result-status">{{ listing.get_status_display }}</span>
                                     </div>
                                     <div class="ve-result-body">

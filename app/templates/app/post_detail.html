@@ -56,7 +56,7 @@
                         <h4 style="margin-bottom: 20px;">Profil du vendeur</h4>
                         <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
                             {% if seller.profile_picture %}
-                            <div class="bg-img" style="background-image:url({{ seller.profile_picture.url }}); width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;"></div>
+                            <div class="bg-img" style="background-image:url({{ seller.profile_picture|media_or_default:'/static/img/bg-img/20.jpg' }}); width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;"></div>
                             {% else %}
                             <div class="bg-img" style="background:#fec89a; width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0; display:flex; align-items:center; justify-content:center; font-size:32px; color:#fff;">
                                 {{ seller.user.get_full_name|default:seller.user.username|initial }}

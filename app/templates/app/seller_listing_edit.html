@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static avatar_tags %}
 
 {% block title %}{{ page_title }}{% endblock %}
 {% block meta_description %}Éditer votre service sur UniMarket. Mettez à jour la description, le prix, les images et les informations de contact.{% endblock %}
@@ -129,7 +129,7 @@
                                 <div class="ve-form-group">
                                     <label>Image Actuelle</label>
                                     <div class="ve-current-image">
-                                        <img src="{{ listing.image.url }}" alt="{{ listing.title }}">
+                                        <img src="{{ listing.image|media_or_default:'/static/img/bg-img/20.jpg' }}" alt="{{ listing.title }}">
                                     </div>
                                 </div>
 

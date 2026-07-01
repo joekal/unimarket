@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static avatar_tags %}
 {% load mathfilters %}
 
 {% block title %}Accueil - UniMarket | Marché des Étudiants UPC{% endblock %}
@@ -219,7 +219,7 @@
                 {% for listing in recent_listings %}
                 <div class="col-12 col-md-4 wow fadeInUp" data-wow-delay="{{ forloop.counter|mul:150 }}ms">
                     <div class="ve-insight-card">
-                        <div class="ve-insight-img bg-img" style="background-image:url({% if listing.image %}{{ listing.image.url }}{% else %}{% static 'img/bg-img/10.jpg' %}{% endif %});"></div>
+                        <div class="ve-insight-img bg-img" style="background-image:url({{ listing.image|media_or_default:'/static/img/bg-img/20.jpg' }});"></div>
                         <div class="ve-insight-body">
                             <span class="ve-insight-cat">{{ listing.category.name|default:"Services" }}</span>
                             <h5><a href="{% url 'post_detail' listing.slug %}">{{ listing.title }}</a></h5>
