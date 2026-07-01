@@ -1,4 +1,6 @@
 from django import template
+from django.templatetags.static import static
+import random
 
 register = template.Library()
 
@@ -61,3 +63,39 @@ def media_or_default(image_field, default_url='/static/img/bg-img/20.jpg'):
         pass
 
     return default_url
+
+
+@register.filter
+def profile_or_default(image_field):
+    """Return profile image URL or fixed default for all user profiles."""
+    default = static('img/bg-img/2_150.jpg')
+    if not image_field:
+        return default
+    try:
+        if hasattr(image_field, 'storage') and hasattr(image_field, 'name') and image_field.name:
+            if image_field.storage.exists(image_field.name):
+                return image_field.url
+        if hasattr(image_field, 'url'):
+            return image_field.url
+    except Exception:
+        pass
+    return default
+
+
+@register.filter
+def post_or_random(image_field):
+    """Return listing/post image URL or a random default from 20.jpg..30.jpg."""
+    # Build list of default static images from 20.jpg to 30.jpg
+    defaults = [static(f'img/bg-img/{i}.jpg') for i in range(20, 31)]
+    default = random.choice(defaults)
+    if not image_field:
+        return default
+    try:
+        if hasattr(image_field, 'storage') and hasattr(image_field, 'name') and image_field.name:
+            if image_field.storage.exists(image_field.name):
+                return image_field.url
+        if hasattr(image_field, 'url'):
+            return image_field.url
+    except Exception:
+        pass
+    return default

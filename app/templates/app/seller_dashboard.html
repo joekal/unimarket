@@ -83,7 +83,7 @@
                             {% for item in listing_stats %}
                             <article class="listing-card">
                                 <div class="listing-media">
-                                    <img src="{{ item.listing.image|media_or_default:'/static/img/bg-img/20.jpg' }}" alt="{{ item.listing.title }}">
+                                    <img src="{{ item.listing.image|post_or_random }}" alt="{{ item.listing.title }}">
                                 </div>
                                 <div class="listing-body">
                                     <h5 class="listing-title">{{ item.listing.title }}</h5>

@@ -5,7 +5,7 @@
 {% block meta_description %}{{ post.description|truncatewords:30 }}{% endblock %}
 
 {% block content %}
-    <section class="ve-page-hero ve-page-hero-sm" style="background-image:url({{ post.image|media_or_default:'/static/img/bg-img/22.jpg' }});">
+    <section class="ve-page-hero ve-page-hero-sm" style="background-image:url({{ post.image|post_or_random }});">
         <div class="ve-page-hero-overlay"></div>
         <div class="container ve-page-hero-content">
             <span class="ve-insight-cat" style="margin-bottom:16px;">{{ post.category.name }}</span>
@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <article class="ve-article">
-                        <div class="ve-article-featured bg-img" style="background-image:url({{ post.image|media_or_default:'/static/img/bg-img/22.jpg' }});"></div>
+                        <div class="ve-article-featured bg-img" style="background-image:url({{ post.image|post_or_random }});"></div>
                         <div class="ve-article-body">
                             <h3>Informations sur ce service</h3>
                             <ul class="ve-article-info-list">
@@ -56,7 +56,7 @@
                         <h4 style="margin-bottom: 20px;">Profil du vendeur</h4>
                         <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
                             {% if seller.profile_picture %}
-                            <div class="bg-img" style="background-image:url({{ seller.profile_picture|media_or_default:'/static/img/bg-img/20.jpg' }}); width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;"></div>
+                            <div class="bg-img" style="background-image:url({{ seller.profile_picture|profile_or_default }}); width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;"></div>
                             {% else %}
                             <div class="bg-img" style="background:#fec89a; width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0; display:flex; align-items:center; justify-content:center; font-size:32px; color:#fff;">
                                 {{ seller.user.get_full_name|default:seller.user.username|initial }}

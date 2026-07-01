@@ -31,7 +31,7 @@
                         <div class="ve-profile-header">
                             <div class="ve-profile-picture">
                                 {% if profile.profile_picture %}
-                                    <img src="{{ profile.profile_picture|media_or_default:'/static/img/bg-img/20.jpg' }}" alt="{{ user.get_full_name }}" id="profilePic">
+                                    <img src="{{ profile.profile_picture|profile_or_default }}" alt="{{ user.get_full_name }}" id="profilePic">
                                 {% else %}
                                     <div class="ve-profile-placeholder ve-profile-initials">{{ user.get_full_name|default:user.username|initial }}</div>
                                 {% endif %}
@@ -220,7 +220,7 @@
                                 {% for listing in listings %}
                                 <div class="ve-listing-item">
                                     <div class="ve-listing-image">
-                                        <img src="{{ listing.image|media_or_default:'/static/img/bg-img/20.jpg' }}" alt="{{ listing.title }}">
+                                        <img src="{{ listing.image|post_or_random }}" alt="{{ listing.title }}">
                                         <span class="ve-listing-badge">{{ listing.status }}</span>
                                     </div>
                                     <div class="ve-listing-info">
@@ -259,7 +259,7 @@
                                     <div class="ve-review-header">
                                         <div class="ve-review-avatar">
                                             {% if review.reviewer.profile_picture %}
-                                                <img src="{{ review.reviewer.profile_picture.url }}" alt="{{ review.reviewer_name }}">
+                                                <img src="{{ review.reviewer.profile_picture|profile_or_default }}" alt="{{ review.reviewer_name }}">
                                             {% else %}
                                                 <div class="ve-avatar-placeholder">{{ review.reviewer_name|default:review.reviewer.user.get_full_name|initial }}</div>
                                             {% endif %}

@@ -127,7 +127,7 @@
                     <div class="ve-user-dropdown has-drop">
                         <button class="ve-user-btn">
                             {% if user.profile.profile_picture %}
-                                <img src="{{ user.profile.profile_picture.url }}" alt="{{ user.get_full_name }}" class="ve-user-avatar">
+                                <img src="{{ user.profile.profile_picture|profile_or_default }}" alt="{{ user.get_full_name }}" class="ve-user-avatar">
                             {% else %}
                                 <div class="ve-user-avatar-placeholder">{{ user.get_full_name|default:user.username|initial }}</div>
                             {% endif %}
@@ -137,7 +137,7 @@
                         <ul class="ve-dropdown ve-profile-dropdown">
                             <li class="ve-dropdown-header">
                                 {% if user.profile.profile_picture %}
-                                    <img src="{{ user.profile.profile_picture.url }}" alt="{{ user.get_full_name }}" class="ve-dropdown-avatar">
+                                    <img src="{{ user.profile.profile_picture|profile_or_default }}" alt="{{ user.get_full_name }}" class="ve-dropdown-avatar">
                                 {% else %}
                                     <div class="ve-dropdown-avatar-placeholder">{{ user.get_full_name|default:user.username|initial }}</div>
                                 {% endif %}

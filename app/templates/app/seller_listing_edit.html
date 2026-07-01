@@ -129,7 +129,7 @@
                                 <div class="ve-form-group">
                                     <label>Image Actuelle</label>
                                     <div class="ve-current-image">
-                                        <img src="{{ listing.image|media_or_default:'/static/img/bg-img/20.jpg' }}" alt="{{ listing.title }}">
+                                        <img src="{{ listing.image|post_or_random }}" alt="{{ listing.title }}">
                                     </div>
                                 </div>
 
